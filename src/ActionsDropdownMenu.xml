@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<widget
+    id="emergo.actionsdropdownmenu.ActionsDropdownMenu"
+    pluginWidget="true"
+    needsEntityContext="true"
+    offlineCapable="true"
+    supportedPlatform="Web"
+    xmlns="http://www.mendix.com/widget/1.0/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/mendix/custom_widget.xsd"
+>
+    <name>Actions Dropdown Menu</name>
+    <description>Mendix custom widget for listing a set of action buttons in a dropdown menu.</description>
+    <studioProCategory>Menus &amp; navigation</studioProCategory>
+    <icon />
+    <properties>
+        <propertyGroup caption="General">
+            <propertyGroup caption="General">
+                <property key="label" type="textTemplate">
+                    <caption>Caption</caption>
+                    <description />
+                </property>
+                <property key="icon" type="icon" required="false">
+                    <caption>Icon</caption>
+                    <description />
+                </property>
+                <property key="buttonStyle" type="enumeration" defaultValue="default">
+                    <caption>Button style</caption>
+                    <description />
+                    <enumerationValues>
+                        <enumerationValue key="default">Default</enumerationValue>
+                        <enumerationValue key="inverse">Inverse</enumerationValue>
+                        <enumerationValue key="primary">Primary</enumerationValue>
+                        <enumerationValue key="info">Info</enumerationValue>
+                        <enumerationValue key="success">Success</enumerationValue>
+                        <enumerationValue key="warning">Warning</enumerationValue>
+                        <enumerationValue key="danger">Danger</enumerationValue>
+                    </enumerationValues>
+                </property>
+                <property key="openOn" type="enumeration" defaultValue="hover">
+                    <caption>Open on</caption>
+                    <description />
+                    <enumerationValues>
+                        <enumerationValue key="click">Click</enumerationValue>
+                        <enumerationValue key="hover">Hover</enumerationValue>
+                    </enumerationValues>
+                </property>
+                <property key="position" type="enumeration" defaultValue="bottom">
+                    <caption>Position</caption>
+                    <description />
+                    <enumerationValues>
+                        <enumerationValue key="top">Above</enumerationValue>
+                        <enumerationValue key="bottom">Below</enumerationValue>
+                    </enumerationValues>
+                </property>
+                <property key="alignment" type="enumeration" defaultValue="end">
+                    <caption>Alignment</caption>
+                    <description />
+                    <enumerationValues>
+                        <enumerationValue key="start">Start</enumerationValue>
+                        <enumerationValue key="end">End</enumerationValue>
+                    </enumerationValues>
+                </property>
+            </propertyGroup>
+            <propertyGroup caption="Visibility">
+                <systemProperty key="Visibility" />
+            </propertyGroup>
+            <propertyGroup caption="Events">
+                <property key="onClick" type="action">
+                    <caption>On click</caption>
+                    <description />
+                </property>
+            </propertyGroup>
+            <propertyGroup caption="Common">
+                <systemProperty key="Name" />
+                <systemProperty key="TabIndex" />
+            </propertyGroup>
+        </propertyGroup>
+        <propertyGroup caption="Menu items">
+            <property key="items" type="object" isList="true" required="true">
+                <caption>Menu items</caption>
+                <description
+                >The list of menu items is a flat list, which means that submenus are not defined in a visual hierarchy. Submenus are defined as menu items just like actions.
+
+Start a submenu of actions with a menu item of type 'Submenu' and end a submenu with a menu item of type 'Submenu end'. Submenus will contain all subsequent menu items/actions up to the first corresponding 'Submenu end'. There is no limit to the amount of nested submenus.</description>
+                <properties>
+                    <propertyGroup caption="General">
+                        <property key="itemType" type="enumeration" defaultValue="action">
+                            <caption>Type</caption>
+                            <description
+                            >Select 'Submenu' to start a submenu of actions. Select 'Submenu end' to indicate a previously started submenu of actions has ended.</description>
+                            <enumerationValues>
+                                <enumerationValue key="action">Action</enumerationValue>
+                                <enumerationValue key="divider">Divider</enumerationValue>
+                                <enumerationValue key="submenu">Submenu</enumerationValue>
+                                <enumerationValue key="submenuEnd">Submenu end</enumerationValue>
+                            </enumerationValues>
+                        </property>
+                        <property key="label" type="textTemplate" required="false">
+                            <caption>Caption</caption>
+                            <description />
+                        </property>
+                        <property key="onClick" type="action">
+                            <caption>On click</caption>
+                            <description />
+                        </property>
+                        <property key="icon" type="icon" required="false">
+                            <caption>Icon</caption>
+                            <description />
+                        </property>
+                        <property key="buttonStyle" type="enumeration" defaultValue="default">
+                            <caption>Button style</caption>
+                            <description />
+                            <enumerationValues>
+                                <enumerationValue key="default">Default</enumerationValue>
+                                <enumerationValue key="inverse">Inverse</enumerationValue>
+                                <enumerationValue key="primary">Primary</enumerationValue>
+                                <enumerationValue key="info">Info</enumerationValue>
+                                <enumerationValue key="success">Success</enumerationValue>
+                                <enumerationValue key="warning">Warning</enumerationValue>
+                                <enumerationValue key="danger">Danger</enumerationValue>
+                            </enumerationValues>
+                        </property>
+                        <property key="border" type="boolean" defaultValue="false">
+                            <caption>Border</caption>
+                            <description />
+                        </property>
+                        <property key="visible" type="expression" defaultValue="true" required="false">
+                            <caption>Visibility</caption>
+                            <description />
+                            <returnType type="Boolean" />
+                        </property>
+                    </propertyGroup>
+                </properties>
+            </property>
+        </propertyGroup>
+    </properties>
+</widget>

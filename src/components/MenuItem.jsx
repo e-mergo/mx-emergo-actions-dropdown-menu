@@ -1,0 +1,66 @@
+import { createElement, forwardRef, useContext } from "react";
+import { useFloatingTree, useListItem, useMergeRefs } from "@floating-ui/react";
+import classNames from "classnames";
+import { Icon } from "./Icon";
+import { MenuContext } from "./MenuContext";
+
+/**
+ * MenuItem element
+ *
+ * Wrapped in `forwardRef()` for accepting external refs.
+ *
+ * @since 1.0.0
+ *
+ * @param {String}  options.className   Element class name.
+ * @param {String}  options.label       Menu label attribute.
+ * @param {Object}  options.icon        Menu icon attribute. See {@link https://docs.mendix.com/apidocs-mxsdk/apidocs/pluggable-widgets-client-apis/#icon-value}.
+ * @param {String}  options.buttonStyle Menu button style attribute.
+ * @param {Boolean} options.border      Whether the menu item has a border.
+ * @param {Boolean} options.disabled    Whether the menu item is disabled.
+ */
+export const MenuItem = forwardRef(
+    ({ className, label, icon, buttonStyle, border, disabled, ...props }, forwardedRef) => {
+        // Using the menu context
+        const { getItemProps, activeIndex, setHasFocusInside } = useContext(MenuContext);
+
+        // Using the floating tree context
+        const tree = useFloatingTree();
+
+        // Define item in the floating list
+        const { ref, index } = useListItem({ label: disabled ? null : label });
+
+        // Define whether this is the active item
+        const isActive = index === activeIndex;
+
+        return (
+            <button
+                ref={useMergeRefs([ref, forwardedRef])}
+                type="button"
+                role="menuitem"
+                className={classNames(
+                    "btn mx-button",
+                    className,
+                    { "btn-bordered": border },
+                    `btn-${buttonStyle}`,
+                    "menu-item"
+                )}
+                {...getItemProps({
+                    ...props,
+                    onClick(event) {
+                        props.onClick?.(event);
+                        tree?.events.emit("click");
+                    },
+                    onFocus(event) {
+                        props.onFocus?.(event);
+                        setHasFocusInside(true);
+                    }
+                })}
+                tabIndex={isActive ? 0 : -1}
+                disabled={disabled}
+            >
+                <Icon icon={icon} />
+                {label}
+            </button>
+        );
+    }
+);
