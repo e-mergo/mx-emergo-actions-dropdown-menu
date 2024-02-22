@@ -36,21 +36,35 @@ import { MenuContext } from "./MenuContext";
  *
  * @since 1.0.0
  *
- * @param {Array}   options.children    Element children.
- * @param {String}  options.className   Element class name.
- * @param {String}  options.label       Menu label attribute.
- * @param {Object}  options.icon        Menu icon attribute. See {@link https://docs.mendix.com/apidocs-mxsdk/apidocs/pluggable-widgets-client-apis/#icon-value}.
- * @param {String}  options.buttonStyle Menu button style attribute.
- * @param {Boolean} options.border      Whether the menu has a border.
- * @param {String}  options.interaction Menu interaction attribute.
- * @param {String}  options.position    Menu position attribute.
- * @param {String}  options.alignment   Menu alignment attribute.
- * @param {String}  options.onClick     Menu onClick action.
- * @param {Number}  options.tabIndex    Element tabindex.
+ * @param {Array}   options.children     Element children.
+ * @param {String}  options.className    Element class name.
+ * @param {String}  options.label        Menu label attribute.
+ * @param {Object}  options.icon         Menu action icon attribute. See {@link https://docs.mendix.com/apidocs-mxsdk/apidocs/pluggable-widgets-client-apis/#icon-value}.
+ * @param {Object}  options.dropdownIcon Menu dropdown icon attribute. See {@link https://docs.mendix.com/apidocs-mxsdk/apidocs/pluggable-widgets-client-apis/#icon-value}.
+ * @param {String}  options.buttonStyle  Menu button style attribute.
+ * @param {Boolean} options.border       Whether the menu has a border.
+ * @param {String}  options.interaction  Menu interaction attribute.
+ * @param {String}  options.position     Menu position attribute.
+ * @param {String}  options.alignment    Menu alignment attribute.
+ * @param {String}  options.onClick      Menu onClick action.
+ * @param {Number}  options.tabIndex     Element tabindex.
  */
 export const MenuComponent = forwardRef(
     (
-        { children, className, label, icon, buttonStyle, border, interaction, position, alignment, tabIndex, ...props },
+        {
+            children,
+            className,
+            label,
+            icon,
+            dropdownIcon,
+            buttonStyle,
+            border,
+            interaction,
+            position,
+            alignment,
+            tabIndex,
+            ...props
+        },
         forwardedRef
     ) => {
         // Define state for showing/hiding the menu
@@ -261,7 +275,8 @@ export const MenuComponent = forwardRef(
                                 {label}
                             </span>
                         )}
-                        <span aria-hidden className="menu-item-open caret"></span>
+                        <Icon icon={dropdownIcon} />
+                        {!dropdownIcon && <span aria-hidden className="menu-item-open caret"></span>}
                     </button>
                 </ButtonGroup>
                 <MenuContext.Provider

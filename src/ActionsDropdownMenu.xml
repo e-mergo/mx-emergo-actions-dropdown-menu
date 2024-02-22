@@ -77,6 +77,10 @@
             </propertyGroup>
         </propertyGroup>
         <propertyGroup caption="Menu items">
+            <property key="dropdownIcon" type="icon" required="false">
+                <caption>Menu dropdown icon</caption>
+                <description />
+            </property>
             <property key="items" type="object" isList="true" required="true">
                 <caption>Menu items</caption>
                 <description
