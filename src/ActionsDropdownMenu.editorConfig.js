@@ -1,4 +1,4 @@
-import { hideNestedPropertiesIn } from "@mendix/pluggable-widgets-tools";
+import { hidePropertiesIn, hideNestedPropertiesIn } from "@mendix/pluggable-widgets-tools";
 
 // Define conditional properties for menu items
 const keysToHideByMenuItemType = {
@@ -17,6 +17,11 @@ const keysToHideByMenuItemType = {
  * @return {Properties} Widget properties
  */
 export function getProperties(values, defaultProperties, target) {
+    // Conditional event property
+    if (!values.onClick) {
+        hidePropertiesIn(defaultProperties, values, ["actionButtonStyle"]);
+    }
+
     // Walk menu items
     values.items.forEach((item, index) => {
         // Conditional properties
