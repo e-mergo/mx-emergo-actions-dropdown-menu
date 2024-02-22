@@ -217,7 +217,11 @@ export const MenuComponent = forwardRef(
             <FloatingNode id={nodeId}>
                 <ButtonGroup className={className}>
                     {isActionTrigger && (
-                        <button type="button" className="btn mx-button action-button" {...props}>
+                        <button
+                            type="button"
+                            className={classNames("btn mx-button action-button", `btn-${buttonStyle}`)}
+                            {...props}
+                        >
                             <Icon icon={icon} />
                             {label}
                         </button>
