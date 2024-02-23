@@ -36,19 +36,20 @@ import { MenuContext } from "./MenuContext";
  *
  * @since 1.0.0
  *
- * @param {Array}   options.children          Element children.
- * @param {String}  options.className         Element class name.
- * @param {String}  options.label             Menu label attribute.
- * @param {Object}  options.icon              Menu action icon attribute. See {@link https://docs.mendix.com/apidocs-mxsdk/apidocs/pluggable-widgets-client-apis/#icon-value}.
- * @param {Object}  options.dropdownIcon      Menu dropdown icon attribute. See {@link https://docs.mendix.com/apidocs-mxsdk/apidocs/pluggable-widgets-client-apis/#icon-value}.
- * @param {String}  options.buttonStyle       Menu button style attribute.
- * @param {Boolean} options.border            Whether the menu has a border.
- * @param {String}  options.interaction       Menu interaction attribute.
- * @param {String}  options.position          Menu position attribute.
- * @param {String}  options.alignment         Menu alignment attribute.
- * @param {String}  options.onClick           Menu onClick action.
- * @param {String}  options.actionButtonStyle Menu action button style attribute.
- * @param {Number}  options.tabIndex          Element tabindex.
+ * @param {Array}   options.children           Element children.
+ * @param {String}  options.className          Element class name.
+ * @param {String}  options.label              Menu label attribute.
+ * @param {Object}  options.icon               Menu action icon attribute. See {@link https://docs.mendix.com/apidocs-mxsdk/apidocs/pluggable-widgets-client-apis/#icon-value}.
+ * @param {Object}  options.dropdownIcon       Menu dropdown icon attribute. See {@link https://docs.mendix.com/apidocs-mxsdk/apidocs/pluggable-widgets-client-apis/#icon-value}.
+ * @param {String}  options.buttonStyle        Menu button style attribute.
+ * @param {Boolean} options.border             Whether the menu has a border.
+ * @param {String}  options.interaction        Menu interaction attribute.
+ * @param {String}  options.position           Menu position attribute.
+ * @param {String}  options.alignment          Menu alignment attribute.
+ * @param {String}  options.onClick            Menu onClick action.
+ * @param {String}  options.actionButtonStyle  Menu action button style attribute.
+ * @param {Boolean} options.actionButtonBorder Whether the action button has a border.
+ * @param {Number}  options.tabIndex           Element tabindex.
  */
 export const MenuComponent = forwardRef(
     (
@@ -64,6 +65,7 @@ export const MenuComponent = forwardRef(
             position,
             alignment,
             actionButtonStyle,
+            actionButtonBorder,
             tabIndex,
             ...props
         },
@@ -235,7 +237,9 @@ export const MenuComponent = forwardRef(
                     {isActionTrigger && (
                         <button
                             type="button"
-                            className={classNames("btn mx-button action-button", `btn-${actionButtonStyle}`)}
+                            className={classNames("btn mx-button action-button", `btn-${actionButtonStyle}`, {
+                                "btn-bordered": actionButtonBorder
+                            })}
                             {...props}
                         >
                             <Icon icon={icon} />
