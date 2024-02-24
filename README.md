@@ -33,6 +33,10 @@ Set the menu button icon with a icon or image from the icon library.
 
 Set the button style of the menu button with a choice from the familiar set of styles.
 
+### Border
+
+Set whether the button is decorated with a border.
+
 ### Interaction
 
 Set the interaction method of the menu: open the menu on click or on hover.
@@ -51,7 +55,11 @@ Set the visibility of the dropdown menu like any other widget.
 
 ### Events: On click
 
-Optionally set the menu button click action. When set, the menu button is split into a button group combining an action button and a dropdown button.
+Optionally set the menu button click action. When set, the menu button is split into a button group combining an action button and a dropdown button. Additionally set a separate button style and border decoration for the action button.
+
+### Menu dropdown icon
+
+Set the menu dropdown icon with a icon or image from the icon library. By default a downward facing caret is used.
 
 ### Menu items
 
@@ -104,6 +112,13 @@ E-mergo provides paid support through standard support contracts. For other scen
 Requests for additional features can be posted in the widget's GitHub repository. Depending on your own code samples and the availability of E-mergo developers your request may be considered and included.
 
 ## Changelog
+
+#### 1.1.0 - 20240224
+
+- Added attribute for the dropdown menu icon.
+- Added attribute for the dropdown button border.
+- Added attribute for the action button style.
+- Added attribute for the action button border.
 
 #### 1.0.0 - 20231123 - Mendix 9.24.3
 
