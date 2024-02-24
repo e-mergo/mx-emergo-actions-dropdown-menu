@@ -19,7 +19,7 @@ const keysToHideByMenuItemType = {
 export function getProperties(values, defaultProperties, target) {
     // Conditional event property
     if (!values.onClick) {
-        hidePropertiesIn(defaultProperties, values, ["actionButtonStyle"]);
+        hidePropertiesIn(defaultProperties, values, ["actionButtonStyle", "actionButtonBorder"]);
     }
 
     // Walk menu items
