@@ -131,6 +131,9 @@ export function DropdownMenu({
             // Remove invisible items
             .filter(item => item.visible.value)
 
+            // Remove unauthorized actions
+            .filter(item => !item.onClick || item.onClick.isAuthorized)
+
             // Remove leading dividers without label and trailing dividers
             .filter((item, index, arr) =>
                 "divider" === item.itemType ? (0 !== index || item.label.value) && index !== arr.length - 1 : true
