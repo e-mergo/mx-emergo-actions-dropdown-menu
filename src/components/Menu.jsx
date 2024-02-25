@@ -1,4 +1,4 @@
-import { createElement, forwardRef, useContext, useRef, useState, useEffect } from "react";
+import { createElement, forwardRef, Fragment, useContext, useRef, useState, useEffect } from "react";
 import {
     FloatingFocusManager,
     FloatingList,
@@ -27,6 +27,7 @@ import {
 import classNames from "classnames";
 import { ButtonGroup } from "./ButtonGroup";
 import { Icon } from "./Icon";
+import { MenuButton } from "./MenuButton";
 import { MenuContext } from "./MenuContext";
 
 /**
@@ -36,20 +37,21 @@ import { MenuContext } from "./MenuContext";
  *
  * @since 1.0.0
  *
- * @param {Array}   options.children           Element children.
- * @param {String}  options.className          Element class name.
- * @param {String}  options.label              Menu label attribute.
- * @param {Object}  options.icon               Menu action icon attribute. See {@link https://docs.mendix.com/apidocs-mxsdk/apidocs/pluggable-widgets-client-apis/#icon-value}.
- * @param {Object}  options.dropdownIcon       Menu dropdown icon attribute. See {@link https://docs.mendix.com/apidocs-mxsdk/apidocs/pluggable-widgets-client-apis/#icon-value}.
- * @param {String}  options.buttonStyle        Menu button style attribute.
- * @param {Boolean} options.border             Whether the menu has a border.
- * @param {String}  options.interaction        Menu interaction attribute.
- * @param {String}  options.position           Menu position attribute.
- * @param {String}  options.alignment          Menu alignment attribute.
- * @param {String}  options.onClick            Menu onClick action.
- * @param {String}  options.actionButtonStyle  Menu action button style attribute.
- * @param {Boolean} options.actionButtonBorder Whether the action button has a border.
- * @param {Number}  options.tabIndex           Element tabindex.
+ * @param {Array}   options.children              Element children.
+ * @param {String}  options.className             Element class name.
+ * @param {String}  options.label                 Menu label attribute.
+ * @param {Object}  options.icon                  Menu action icon attribute. See {@link https://docs.mendix.com/apidocs-mxsdk/apidocs/pluggable-widgets-client-apis/#icon-value}.
+ * @param {Object}  options.dropdownIcon          Menu dropdown icon attribute. See {@link https://docs.mendix.com/apidocs-mxsdk/apidocs/pluggable-widgets-client-apis/#icon-value}.
+ * @param {String}  options.buttonStyle           Menu button style attribute.
+ * @param {Boolean} options.border                Whether the menu has a border.
+ * @param {String}  options.interaction           Menu interaction attribute.
+ * @param {String}  options.position              Menu position attribute.
+ * @param {String}  options.alignment             Menu alignment attribute.
+ * @param {String}  options.onClick               Menu onClick action.
+ * @param {String}  options.actionButtonStyle     Menu action button style attribute.
+ * @param {Boolean} options.actionButtonBorder    Whether the action button has a border.
+ * @param {String}  options.hideDropdownWhenEmpty Enumeration of how to hide the dropdown when the menu is empty.
+ * @param {Number}  options.tabIndex              Element tabindex.
  */
 export const MenuComponent = forwardRef(
     (
@@ -66,6 +68,7 @@ export const MenuComponent = forwardRef(
             alignment,
             actionButtonStyle,
             actionButtonBorder,
+            hideDropdownWhenEmpty,
             tabIndex,
             ...props
         },
@@ -106,6 +109,12 @@ export const MenuComponent = forwardRef(
 
         // Check whether the root button also triggers actions
         const isActionTrigger = !isNested && !!props.onClick;
+
+        // Check whether to show the root menu button
+        const showDropdown = !isNested && "yes" === hideDropdownWhenEmpty ? !!children.length : true;
+
+        // Check whether to show the root menu button
+        const showDropdownIcon = !isNested && "icon" === hideDropdownWhenEmpty ? !!children.length : true;
 
         // Check whether the UI is in RTL
         const isRtl = "rtl" === window.mx.session.sessionData.uiconfig.direction; // Mx global
@@ -234,7 +243,7 @@ export const MenuComponent = forwardRef(
         return (
             <FloatingNode id={nodeId}>
                 <ButtonGroup className={className}>
-                    {isActionTrigger && (
+                    {isActionTrigger && showDropdown && (
                         <button
                             type="button"
                             className={classNames("btn mx-button action-button", `btn-${actionButtonStyle}`, {
@@ -246,24 +255,16 @@ export const MenuComponent = forwardRef(
                             {label}
                         </button>
                     )}
-                    <button
+                    <MenuButton
                         ref={useMergeRefs([refs.setReference, ref, forwardedRef])}
-                        type="button"
-                        className={classNames(
-                            "btn mx-button",
-                            !isActionTrigger ? className : undefined,
-                            `btn-${buttonStyle}`,
-                            {
-                                "btn-bordered": border,
-                                active: isNested ? isOpen && hasFocusInside : isOpen
-                            },
-                            isNested ? "menu-item" : "root-menu"
-                        )}
+                        className={classNames(!isActionTrigger ? className : undefined, `btn-${buttonStyle}`, {
+                            "btn-bordered": border
+                        })}
+                        hideButton={!showDropdown || (isActionTrigger && !showDropdownIcon)}
+                        isNested={isNested}
+                        isOpen={isOpen}
+                        hasFocusInside={hasFocusInside}
                         tabIndex={!isNested ? undefined : parent.activeIndex === index ? 0 : -1}
-                        role={isNested ? "menuitem" : undefined}
-                        data-open={isOpen ? "" : undefined}
-                        data-nested={isNested ? "" : undefined}
-                        data-focus-inside={hasFocusInside ? "" : undefined}
                         {...getReferenceProps(
                             parent.getItemProps({
                                 ...(!isActionTrigger && props),
@@ -281,9 +282,13 @@ export const MenuComponent = forwardRef(
                                 {label}
                             </span>
                         )}
-                        <Icon icon={dropdownIcon} />
-                        {!dropdownIcon && <span aria-hidden className="menu-item-open caret"></span>}
-                    </button>
+                        {showDropdownIcon && (
+                            <Fragment>
+                                <Icon icon={dropdownIcon} />
+                                {!dropdownIcon && <span aria-hidden className="menu-item-open caret"></span>}
+                            </Fragment>
+                        )}
+                    </MenuButton>
                 </ButtonGroup>
                 <MenuContext.Provider
                     value={{
