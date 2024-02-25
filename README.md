@@ -81,6 +81,10 @@ The following attributes may be set on a menu item:
 -   Border
 -   Visibility
 
+### Hide empty menu
+
+Select whether to hide the button when the menu does not show any items: hide, hide the dropdown icon only, do not hide.
+
 ## Usage
 
 Follow these steps to add the widget to your Mendix project:
@@ -113,12 +117,17 @@ Requests for additional features can be posted in the widget's GitHub repository
 
 ## Changelog
 
+#### 1.2.0 - 20240225
+
+-   Added attribute for hiding the button when the menu is empty.
+-   Fixed removing unauthorized actions from the menu.
+
 #### 1.1.0 - 20240224
 
-- Added attribute for the dropdown menu icon.
-- Added attribute for the dropdown button border.
-- Added attribute for the action button style.
-- Added attribute for the action button border.
+-   Added attribute for the dropdown menu icon.
+-   Added attribute for the dropdown button border.
+-   Added attribute for the action button style.
+-   Added attribute for the action button border.
 
 #### 1.0.0 - 20231123 - Mendix 9.24.3
 
