@@ -26,7 +26,7 @@ export const MenuButton = forwardRef(
             <button
                 ref={forwardedRef}
                 type="button"
-                className={classNames("btn mx-button", isNested ? "menu-item" : "root-menu", {
+                className={classNames("btn mx-button", className, isNested ? "menu-item" : "root-menu", {
                     active: isNested ? isOpen && hasFocusInside : isOpen
                 })}
                 role={isNested ? "menuitem" : undefined}
