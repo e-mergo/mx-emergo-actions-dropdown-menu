@@ -117,6 +117,10 @@ Requests for additional features can be posted in the widget's GitHub repository
 
 ## Changelog
 
+#### 1.2.1 - 20240226
+
+-   Fixed missing classnames for the dropdown menu button element.
+
 #### 1.2.0 - 20240225
 
 -   Added attribute for hiding the button when the menu is empty.
