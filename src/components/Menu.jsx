@@ -249,6 +249,7 @@ export const MenuComponent = forwardRef(
                             className={classNames("btn mx-button action-button", `btn-${actionButtonStyle}`, {
                                 "btn-bordered": actionButtonBorder
                             })}
+                            tabIndex={tabIndex}
                             {...props}
                         >
                             <Icon icon={icon} />
@@ -264,7 +265,7 @@ export const MenuComponent = forwardRef(
                         isNested={isNested}
                         isOpen={isOpen}
                         hasFocusInside={hasFocusInside}
-                        tabIndex={!isNested ? undefined : parent.activeIndex === index ? 0 : -1}
+                        tabIndex={!isNested ? tabIndex : parent.activeIndex === index ? 0 : -1}
                         {...getReferenceProps(
                             parent.getItemProps({
                                 ...(!isActionTrigger && props),
