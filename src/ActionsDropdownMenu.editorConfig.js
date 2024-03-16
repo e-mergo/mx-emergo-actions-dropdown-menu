@@ -1,11 +1,15 @@
 import { hidePropertiesIn, hideNestedPropertiesIn } from "@mendix/pluggable-widgets-tools";
 
+// Define actionList specific properties for menu items
+const actionListMenuItemKeys = ["actionListDatasource", "actionListLabel", "actionListOnClick", "actionListVisible"];
+
 // Define conditional properties for menu items
 const keysToHideByMenuItemType = {
-    action: [],
-    divider: ["onClick", "icon", "buttonStyle", "border"],
-    submenu: ["onClick", "border"],
-    submenuEnd: ["label", "onClick", "icon", "buttonStyle", "border", "visible"]
+    action: [...actionListMenuItemKeys],
+    actionList: ["label", "onClick", "visible"],
+    divider: [...actionListMenuItemKeys, "onClick", "icon", "buttonStyle", "border"],
+    submenu: [...actionListMenuItemKeys, "onClick", "border"],
+    submenuEnd: [...actionListMenuItemKeys, "label", "onClick", "icon", "buttonStyle", "border", "visible"]
 };
 
 /**

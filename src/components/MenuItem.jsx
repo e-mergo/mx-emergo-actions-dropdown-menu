@@ -12,9 +12,9 @@ import { MenuContext } from "./MenuContext";
  * @since 1.0.0
  *
  * @param {String}  options.className   Element class name.
- * @param {String}  options.label       Menu label attribute.
- * @param {Object}  options.icon        Menu icon attribute. See {@link https://docs.mendix.com/apidocs-mxsdk/apidocs/pluggable-widgets-client-apis/#icon-value}.
- * @param {String}  options.buttonStyle Menu button style attribute.
+ * @param {String}  options.label       Menu item label attribute.
+ * @param {Object}  options.icon        Menu item icon attribute. See {@link https://docs.mendix.com/apidocs-mxsdk/apidocs/pluggable-widgets-client-apis/#icon-value}.
+ * @param {String}  options.buttonStyle Menu item button style attribute.
  * @param {Boolean} options.border      Whether the menu item has a border.
  * @param {Boolean} options.disabled    Whether the menu item is disabled.
  */

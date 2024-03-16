@@ -3,6 +3,8 @@ import classNames from "classnames";
 import { Menu } from "./Menu";
 import { MenuDivider } from "./MenuDivider";
 import { MenuItem } from "./MenuItem";
+import { MenuItemList } from "./MenuItemList";
+import { setupActionCallback } from "../util";
 
 /**
  * DropdownMenu element
@@ -42,24 +44,6 @@ export function DropdownMenu({
     hideDropdownWhenEmpty,
     tabIndex
 }) {
-    /**
-     * Setup callback for an action
-     *
-     * @param  {Object}   action Mendix action object
-     * @return {Function}        Action callback
-     */
-    const setupActionCallback = action => {
-        if (!action) {
-            return null;
-        }
-
-        return () => {
-            if (action && action.isAuthorized && action.canExecute && !action.isExecuting) {
-                action.execute();
-            }
-        };
-    };
-
     // Holds the menu levels
     const levels = [0];
 
@@ -106,7 +90,7 @@ export function DropdownMenu({
                     return false;
                 }
 
-                // Add other items (action, divider) to the list
+                // Add other items (action, actionList, divider) to the list
             } else {
                 list.push(item);
             }
@@ -145,11 +129,13 @@ export function DropdownMenu({
             .map(item => {
                 // Prepare props
                 const props = {
+                    ...item,
                     label: item.label.value,
                     icon: item.icon,
                     buttonStyle: "divider" !== item.itemType ? item.buttonStyle : false,
                     border: item.border,
-                    onClick: setupActionCallback(item.onClick)
+                    onClick: setupActionCallback(item.onClick),
+                    visible: item.visible.value
                 };
 
                 // Add submenu, require visible items
@@ -161,6 +147,10 @@ export function DropdownMenu({
                     // Add divider item
                 } else if ("divider" === item.itemType) {
                     return <MenuDivider {...props} />;
+
+                    // Add list of menu items
+                } else if ("actionList" === item.itemType) {
+                    return <MenuItemList {...props} />;
 
                     // Add generic menu item
                 } else {

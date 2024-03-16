@@ -1,14 +1,14 @@
 import { createContext } from "react";
 
 /**
- * Menu context object
+ * MenuContext object
  *
  * @since 1.0.0
  */
 export const MenuContext = createContext({
-    getItemProps: () => ({}),
     activeIndex: null,
+    isOpen: false,
+    getItemProps: () => {},
     setActiveIndex: () => {},
-    setHasFocusInside: () => {},
-    isOpen: false
+    setHasFocusInside: () => {}
 });

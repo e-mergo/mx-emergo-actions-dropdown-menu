@@ -116,6 +116,7 @@ Start a submenu of actions with a menu item of type 'Submenu' and end a submenu 
                             >Select 'Submenu' to start a submenu of actions. Select 'Submenu end' to indicate a previously started submenu of actions has ended.</description>
                             <enumerationValues>
                                 <enumerationValue key="action">Action</enumerationValue>
+                                <enumerationValue key="actionList">Action list</enumerationValue>
                                 <enumerationValue key="divider">Divider</enumerationValue>
                                 <enumerationValue key="submenu">Submenu</enumerationValue>
                                 <enumerationValue key="submenuEnd">Submenu end</enumerationValue>
@@ -125,7 +126,24 @@ Start a submenu of actions with a menu item of type 'Submenu' and end a submenu 
                             <caption>Caption</caption>
                             <description />
                         </property>
+                        <property key="actionListDatasource" type="datasource" isList="true">
+                            <caption>Data source</caption>
+                            <description />
+                        </property>
+                        <property
+                            key="actionListLabel"
+                            type="textTemplate"
+                            dataSource="actionListDatasource"
+                            required="true"
+                        >
+                            <caption>Caption</caption>
+                            <description />
+                        </property>
                         <property key="onClick" type="action">
+                            <caption>On click</caption>
+                            <description />
+                        </property>
+                        <property key="actionListOnClick" type="action" dataSource="actionListDatasource">
                             <caption>On click</caption>
                             <description />
                         </property>
@@ -151,6 +169,17 @@ Start a submenu of actions with a menu item of type 'Submenu' and end a submenu 
                             <description />
                         </property>
                         <property key="visible" type="expression" defaultValue="true" required="false">
+                            <caption>Visibility</caption>
+                            <description />
+                            <returnType type="Boolean" />
+                        </property>
+                        <property
+                            key="actionListVisible"
+                            type="expression"
+                            dataSource="actionListDatasource"
+                            defaultValue="true"
+                            required="false"
+                        >
                             <caption>Visibility</caption>
                             <description />
                             <returnType type="Boolean" />
