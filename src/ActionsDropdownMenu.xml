@@ -110,80 +110,90 @@
 Start a submenu of actions with a menu item of type 'Submenu' and end a submenu with a menu item of type 'Submenu end'. Submenus will contain all subsequent menu items/actions up to the first corresponding 'Submenu end'. There is no limit to the amount of nested submenus.</description>
                 <properties>
                     <propertyGroup caption="General">
-                        <property key="itemType" type="enumeration" defaultValue="action">
-                            <caption>Type</caption>
-                            <description
-                            >Select 'Submenu' to start a submenu of actions. Select 'Submenu end' to indicate a previously started submenu of actions has ended.</description>
-                            <enumerationValues>
-                                <enumerationValue key="action">Action</enumerationValue>
-                                <enumerationValue key="actionList">Action list</enumerationValue>
-                                <enumerationValue key="divider">Divider</enumerationValue>
-                                <enumerationValue key="submenu">Submenu</enumerationValue>
-                                <enumerationValue key="submenuEnd">Submenu end</enumerationValue>
-                            </enumerationValues>
-                        </property>
-                        <property key="label" type="textTemplate" required="false">
-                            <caption>Caption</caption>
-                            <description />
-                        </property>
-                        <property key="actionListDatasource" type="datasource" isList="true">
-                            <caption>Data source</caption>
-                            <description />
-                        </property>
-                        <property
-                            key="actionListLabel"
-                            type="textTemplate"
-                            dataSource="actionListDatasource"
-                            required="true"
-                        >
-                            <caption>Caption</caption>
-                            <description />
-                        </property>
-                        <property key="onClick" type="action">
-                            <caption>On click</caption>
-                            <description />
-                        </property>
-                        <property key="actionListOnClick" type="action" dataSource="actionListDatasource">
-                            <caption>On click</caption>
-                            <description />
-                        </property>
-                        <property key="icon" type="icon" required="false">
-                            <caption>Icon</caption>
-                            <description />
-                        </property>
-                        <property key="buttonStyle" type="enumeration" defaultValue="default">
-                            <caption>Button style</caption>
-                            <description />
-                            <enumerationValues>
-                                <enumerationValue key="default">Default</enumerationValue>
-                                <enumerationValue key="inverse">Inverse</enumerationValue>
-                                <enumerationValue key="primary">Primary</enumerationValue>
-                                <enumerationValue key="info">Info</enumerationValue>
-                                <enumerationValue key="success">Success</enumerationValue>
-                                <enumerationValue key="warning">Warning</enumerationValue>
-                                <enumerationValue key="danger">Danger</enumerationValue>
-                            </enumerationValues>
-                        </property>
-                        <property key="border" type="boolean" defaultValue="false">
-                            <caption>Border</caption>
-                            <description />
-                        </property>
-                        <property key="visible" type="expression" defaultValue="true" required="false">
-                            <caption>Visibility</caption>
-                            <description />
-                            <returnType type="Boolean" />
-                        </property>
-                        <property
-                            key="actionListVisible"
-                            type="expression"
-                            dataSource="actionListDatasource"
-                            defaultValue="true"
-                            required="false"
-                        >
-                            <caption>Visibility</caption>
-                            <description />
-                            <returnType type="Boolean" />
-                        </property>
+                        <propertyGroup caption="Type">
+                            <property key="itemType" type="enumeration" defaultValue="action">
+                                <caption>Type</caption>
+                                <description
+                                >Select 'Submenu' to start a submenu of actions. Select 'Submenu end' to indicate a previously started submenu of actions has ended.</description>
+                                <enumerationValues>
+                                    <enumerationValue key="action">Action</enumerationValue>
+                                    <enumerationValue key="actionList">Action list</enumerationValue>
+                                    <enumerationValue key="divider">Divider</enumerationValue>
+                                    <enumerationValue key="submenu">Submenu</enumerationValue>
+                                    <enumerationValue key="submenuEnd">Submenu end</enumerationValue>
+                                </enumerationValues>
+                            </property>
+                        </propertyGroup>
+                        <propertyGroup caption="Data source">
+                            <property key="actionListDatasource" type="datasource" isList="true">
+                                <caption>Data source</caption>
+                                <description />
+                            </property>
+                        </propertyGroup>
+                        <propertyGroup caption="General">
+                            <property key="label" type="textTemplate" required="false">
+                                <caption>Caption</caption>
+                                <description />
+                            </property>
+                            <property
+                                key="actionListLabel"
+                                type="textTemplate"
+                                dataSource="actionListDatasource"
+                                required="true"
+                            >
+                                <caption>Caption</caption>
+                                <description />
+                            </property>
+                            <property key="icon" type="icon" required="false">
+                                <caption>Icon</caption>
+                                <description />
+                            </property>
+                            <property key="buttonStyle" type="enumeration" defaultValue="default">
+                                <caption>Button style</caption>
+                                <description />
+                                <enumerationValues>
+                                    <enumerationValue key="default">Default</enumerationValue>
+                                    <enumerationValue key="inverse">Inverse</enumerationValue>
+                                    <enumerationValue key="primary">Primary</enumerationValue>
+                                    <enumerationValue key="info">Info</enumerationValue>
+                                    <enumerationValue key="success">Success</enumerationValue>
+                                    <enumerationValue key="warning">Warning</enumerationValue>
+                                    <enumerationValue key="danger">Danger</enumerationValue>
+                                </enumerationValues>
+                            </property>
+                            <property key="border" type="boolean" defaultValue="false">
+                                <caption>Border</caption>
+                                <description />
+                            </property>
+                        </propertyGroup>
+                        <propertyGroup caption="Events">
+                            <property key="onClick" type="action">
+                                <caption>On click</caption>
+                                <description />
+                            </property>
+                            <property key="actionListOnClick" type="action" dataSource="actionListDatasource">
+                                <caption>On click</caption>
+                                <description />
+                            </property>
+                        </propertyGroup>
+                        <propertyGroup caption="Visibility">
+                            <property key="visible" type="expression" defaultValue="true" required="false">
+                                <caption>Visible</caption>
+                                <description />
+                                <returnType type="Boolean" />
+                            </property>
+                            <property
+                                key="actionListVisible"
+                                type="expression"
+                                dataSource="actionListDatasource"
+                                defaultValue="true"
+                                required="false"
+                            >
+                                <caption>Visible</caption>
+                                <description />
+                                <returnType type="Boolean" />
+                            </property>
+                        </propertyGroup>
                     </propertyGroup>
                 </properties>
             </property>
