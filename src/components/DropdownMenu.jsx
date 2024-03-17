@@ -130,6 +130,7 @@ export function DropdownMenu({
                 // Prepare props
                 const props = {
                     ...item,
+                    className: item.className ? item.className.value : undefined,
                     label: item.label.value,
                     icon: item.icon,
                     buttonStyle: "divider" !== item.itemType ? item.buttonStyle : false,

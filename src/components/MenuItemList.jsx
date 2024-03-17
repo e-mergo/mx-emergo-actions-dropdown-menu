@@ -7,7 +7,7 @@ import { setupActionCallback } from "../util";
  *
  * @since 1.0.0
  *
- * @param {String}  options.className            Element class name.
+ * @param {String}  options.actionListClassName  Menu item class name.
  * @param {Object}  options.actionListDatasource Datasource for menu items.
  * @param {Object}  options.actionListLabel      Menu item label handler.
  * @param {Object}  options.actionListOnClick    Menu item onClick handler.
@@ -18,7 +18,7 @@ import { setupActionCallback } from "../util";
  * @param {Object}  options.actionListVisible    Menu item visibility handler.
  */
 export function MenuItemList({
-    className,
+    actionListClassName: className,
     actionListDatasource: { items },
     actionListLabel: label,
     actionListOnClick: onClick,
@@ -53,7 +53,7 @@ export function MenuItemList({
             // Setup item properties with calculated attributes
             .map(item => ({
                 id: item.id,
-                className,
+                className: getDynamicDataItemValue(className, item),
                 label: getDynamicDataItemValue(label, item),
                 icon: icon,
                 buttonStyle: buttonStyle,
@@ -71,9 +71,10 @@ export function MenuItemList({
             // Parse calculated attributes
             .map(item => ({
                 ...item,
-                label: item.label.value,
+                className: item.className ? item.className.value : undefined,
+                label: item.label ? item.label.value : undefined,
                 onClick: setupActionCallback(item.onClick),
-                visible: item.visible.value
+                visible: item.visible ? item.visible.value : undefined
             }))
 
             // Setup elements

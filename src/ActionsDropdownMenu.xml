@@ -194,6 +194,23 @@ Start a submenu of actions with a menu item of type 'Submenu' and end a submenu 
                                 <returnType type="Boolean" />
                             </property>
                         </propertyGroup>
+                        <propertyGroup caption="Common">
+                            <property key="className" type="expression" required="false">
+                                <caption>Class</caption>
+                                <description />
+                                <returnType type="String" />
+                            </property>
+                            <property
+                                key="actionListClassName"
+                                type="expression"
+                                dataSource="actionListDatasource"
+                                required="false"
+                            >
+                                <caption>Class</caption>
+                                <description />
+                                <returnType type="String" />
+                            </property>
+                        </propertyGroup>
                     </propertyGroup>
                 </properties>
             </property>
