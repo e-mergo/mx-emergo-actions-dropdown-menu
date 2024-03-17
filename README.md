@@ -7,6 +7,7 @@ Mendix custom widget for listing a set of action buttons in a dropdown menu
 In contrast with similar solutions within Mendix (like Menus or the Pop-up menu widget), this widget provides a combination of:
 
 -   Submenus
+-   Dynamic lists of menu items
 -   Dividers with optional caption
 -   Conditional visibility per menu item
 -   Style options per menu item
@@ -66,6 +67,7 @@ Set the menu dropdown icon with a icon or image from the icon library. By defaul
 Set the menu items of the dropdown menu. Choose from the following types of menu items:
 
 -   Action. This item defines a single actionable menu item.
+-   Action list. This item defines multiple actionable menu items based on objects from a data source.
 -   Divider. This item defines a dividing line with an optional caption.
 -   Submenu. This item indicates the start of a subset of menu items.
 -   Submenu end. This item indicates the end of a submenu.
@@ -74,12 +76,14 @@ The list of menu items is a flat list, which means that submenus are not defined
 
 The following attributes may be set on a menu item:
 
+-   Data source
 -   Caption
--   On click action
 -   Icon
 -   Button style
 -   Border
--   Visibility
+-   On click event
+-   Visible
+-   Class
 
 ### Hide empty menu
 
@@ -116,6 +120,13 @@ E-mergo provides paid support through standard support contracts. For other scen
 Requests for additional features can be posted in the widget's GitHub repository. Depending on your own code samples and the availability of E-mergo developers your request may be considered and included.
 
 ## Changelog
+
+#### 1.3.0 - 20240317
+
+-   Added the Action list menu item type. Action lists generate multiple menu items based on objects from a data source.
+-   Added attribute for the menu item class name.
+-   Added attribute grouping for the menu item configuration.
+-   Fixed missing tabindex for the action menu button element.
 
 #### 1.2.1 - 20240226
 
