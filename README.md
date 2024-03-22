@@ -2,12 +2,12 @@
 
 Mendix custom widget for listing a set of action buttons in a dropdown menu
 
-**Actions Dropdown Menu** is a Mendix widget created by [E-mergo](https://www.e-mergo.nl). Use this widget to list any number of action buttons into a dropdown menu. Using custom actions you can set dynamic naming, visibility, button style, and action type of each menu item. Creating submenus is also possible. The widget uses the [Floating UI library](https://floating-ui.com/) for creating the interactive dropdown menu, which supports keyboard interaction. The widget supports RTL layouts.
+**Actions Dropdown Menu** is a Mendix widget created by [E-mergo](https://www.e-mergo.nl). Use this widget to list any number of action buttons into a dropdown menu. Using custom actions you can set dynamic naming, conditional visibility, button style, class name, and action type of each menu item. Creating submenus and generating a list of menu items is also possible. The widget uses the [Floating UI library](https://floating-ui.com/) for creating the interactive dropdown menu, which supports keyboard interaction. The widget supports RTL layouts.
 
 In contrast with similar solutions within Mendix (like Menus or the Pop-up menu widget), this widget provides a combination of:
 
 -   Submenus
--   Dynamic lists of menu items
+-   Dynamically generated menu items
 -   Dividers with optional caption
 -   Conditional visibility per menu item
 -   Style options per menu item
@@ -66,17 +66,19 @@ Set the menu dropdown icon with a icon or image from the icon library. By defaul
 
 Set the menu items of the dropdown menu. Choose from the following types of menu items:
 
--   Action. This item defines a single actionable menu item.
--   Action list. This item defines multiple actionable menu items based on objects from a data source.
--   Divider. This item defines a dividing line with an optional caption.
--   Submenu. This item indicates the start of a subset of menu items.
--   Submenu end. This item indicates the end of a submenu.
+-   **Action** This type defines a single actionable menu item.
+-   **Data source** This type defines multiple actionable menu items based on objects from a data source.
+-   **Enumeration** This type defines multiple actionable menu items based on values in an enumeration. When clicking a menu item, the enumeration attribute is changed to the selected value and the configured onClick event is executed thereafter. Enumeration values cannot be used in expressions for captions, visibility or class names. All menu items get the 'enum-item__{Value}' class. The selected menu item gets the 'enum-item-selected' class.
+-   **Divider** This type defines a dividing line with an optional caption.
+-   **Submenu** This type indicates the start of a subset of menu items.
+-   **Submenu end** This type indicates the end of a submenu.
 
-The list of menu items is a flat list, which means that submenus are not defined in a visual hierarchy. Submenus are defined as menu items just like actions. Start a submenu of actions with a menu item of type 'Submenu' and end a submenu with a menu item of type 'Submenu end'. Submenus without a subsequent 'Submenu end' will contain all subsequent actions. There is no limit to the amount of nested submenus.
+The list of menu items is a flat list, which means that submenus are not defined in a visual hierarchy. Submenus are defined as menu items just like actions. Start a submenu of actions with a menu item of type _Submenu_ and end a submenu with a menu item of type _Submenu end_. Submenus without a subsequent _Submenu end_ will contain all subsequent actions. There is no limit to the amount of nested submenus.
 
 The following attributes may be set on a menu item:
 
 -   Data source
+-   Attribute
 -   Caption
 -   Icon
 -   Button style
@@ -121,9 +123,15 @@ Requests for additional features can be posted in the widget's GitHub repository
 
 ## Changelog
 
+#### 1.4.0 - 20240322
+
+-   Added the _Enumeration_ menu item type. This type defines multiple menu items based on values in an enumeration.
+-   Renamed the _Action list_ menu item type to _Data source_.
+-   Fixed hiding all attributes for the _Submenu end_ menu item type.
+
 #### 1.3.0 - 20240317
 
--   Added the Action list menu item type. Action lists generate multiple menu items based on objects from a data source.
+-   Added the _Data source_ menu item type. This type defines multiple menu items based on objects from a data source.
 -   Added attribute for the menu item class name.
 -   Added attribute grouping for the menu item configuration.
 -   Fixed missing tabindex for the action menu button element.
