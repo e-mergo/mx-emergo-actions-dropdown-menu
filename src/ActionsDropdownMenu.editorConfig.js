@@ -15,7 +15,7 @@ const keysToHideByMenuItemType = {
     actionList: ["label", "onClick", "visible", "className"],
     divider: [...actionListMenuItemKeys, "onClick", "icon", "buttonStyle", "border"],
     submenu: [...actionListMenuItemKeys, "onClick", "border"],
-    submenuEnd: [...actionListMenuItemKeys, "label", "onClick", "icon", "buttonStyle", "border", "visible"]
+    submenuEnd: [...actionListMenuItemKeys, "label", "onClick", "icon", "buttonStyle", "border", "visible", "className"]
 };
 
 /**
