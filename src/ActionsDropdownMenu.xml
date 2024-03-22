@@ -216,11 +216,11 @@ Start a submenu of actions with a menu item of type 'Submenu' and end a submenu 
             </property>
             <property key="hideDropdownWhenEmpty" type="enumeration" defaultValue="no">
                 <caption>Hide empty menu</caption>
-                <description>Hide the menu dropdown button when the menu does not show any items?</description>
+                <description>Hide the widget when the dropdown menu does not show any items?</description>
                 <enumerationValues>
-                    <enumerationValue key="yes">Yes</enumerationValue>
-                    <enumerationValue key="icon">Hide icon only</enumerationValue>
-                    <enumerationValue key="no">No</enumerationValue>
+                    <enumerationValue key="yes">Hide widget</enumerationValue>
+                    <enumerationValue key="icon">Hide dropdown icon only</enumerationValue>
+                    <enumerationValue key="no">Do not hide</enumerationValue>
                 </enumerationValues>
             </property>
         </propertyGroup>

@@ -87,7 +87,7 @@ The following attributes may be set on a menu item:
 
 ### Hide empty menu
 
-Select whether to hide the button when the menu does not show any items: hide, hide the dropdown icon only, do not hide.
+Select whether to hide the widget when the dropdown menu does not show any items: hide widget, hide dropdown icon only, do not hide.
 
 ## Usage
 
