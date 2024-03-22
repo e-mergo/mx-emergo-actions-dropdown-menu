@@ -9,13 +9,27 @@ const actionListMenuItemKeys = [
     "actionListClassName"
 ];
 
+// Define enumeration specific properties for menu items
+const enumerationMenuItemKeys = ["enumerationAttribute"];
+
 // Define conditional properties for menu items
 const keysToHideByMenuItemType = {
-    action: [...actionListMenuItemKeys],
-    actionList: ["label", "onClick", "visible", "className"],
-    divider: [...actionListMenuItemKeys, "onClick", "icon", "buttonStyle", "border"],
-    submenu: [...actionListMenuItemKeys, "onClick", "border"],
-    submenuEnd: [...actionListMenuItemKeys, "label", "onClick", "icon", "buttonStyle", "border", "visible", "className"]
+    action: [...actionListMenuItemKeys, ...enumerationMenuItemKeys],
+    actionList: [...enumerationMenuItemKeys, "label", "onClick", "visible", "className"],
+    enumeration: [...actionListMenuItemKeys, "label"],
+    divider: [...actionListMenuItemKeys, ...enumerationMenuItemKeys, "onClick", "icon", "buttonStyle", "border"],
+    submenu: [...actionListMenuItemKeys, ...enumerationMenuItemKeys, "onClick", "border"],
+    submenuEnd: [
+        ...actionListMenuItemKeys,
+        ...enumerationMenuItemKeys,
+        "label",
+        "onClick",
+        "icon",
+        "buttonStyle",
+        "border",
+        "visible",
+        "className"
+    ]
 };
 
 /**

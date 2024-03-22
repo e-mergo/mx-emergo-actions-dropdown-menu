@@ -118,6 +118,7 @@ Start a submenu of actions with a menu item of type 'Submenu' and end a submenu 
                                 <enumerationValues>
                                     <enumerationValue key="action">Action</enumerationValue>
                                     <enumerationValue key="actionList">Action list</enumerationValue>
+                                    <enumerationValue key="enumeration">Enumeration</enumerationValue>
                                     <enumerationValue key="divider">Divider</enumerationValue>
                                     <enumerationValue key="submenu">Submenu</enumerationValue>
                                     <enumerationValue key="submenuEnd">Submenu end</enumerationValue>
@@ -128,6 +129,14 @@ Start a submenu of actions with a menu item of type 'Submenu' and end a submenu 
                             <property key="actionListDatasource" type="datasource" isList="true">
                                 <caption>Data source</caption>
                                 <description />
+                            </property>
+                            <property key="enumerationAttribute" type="attribute">
+                                <caption>Attribute</caption>
+                                <description
+                                >Enumeration values cannot be used in expressions for captions, visibility or class names.</description>
+                                <attributeTypes>
+                                    <attributeType name="Enum" />
+                                </attributeTypes>
                             </property>
                         </propertyGroup>
                         <propertyGroup caption="General">

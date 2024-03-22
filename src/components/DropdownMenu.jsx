@@ -4,6 +4,7 @@ import { Menu } from "./Menu";
 import { MenuDivider } from "./MenuDivider";
 import { MenuItem } from "./MenuItem";
 import { MenuItemList } from "./MenuItemList";
+import { MenuItemEnum } from "./MenuItemEnum";
 import { setupActionCallback } from "../util";
 
 /**
@@ -152,6 +153,10 @@ export function DropdownMenu({
                     // Add list of menu items
                 } else if ("actionList" === item.itemType) {
                     return <MenuItemList {...props} />;
+
+                    // Add menu items from enumeration
+                } else if ("enumeration" === item.itemType) {
+                    return <MenuItemEnum {...props} />;
 
                     // Add generic menu item
                 } else {
