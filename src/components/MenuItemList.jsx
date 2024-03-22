@@ -5,7 +5,7 @@ import { setupActionCallback } from "../util";
 /**
  * MenuItemList element
  *
- * @since 1.0.0
+ * @since 1.3.0
  *
  * @param {String}  options.actionListClassName  Menu item class name.
  * @param {Object}  options.actionListDatasource Datasource for menu items.
@@ -52,12 +52,12 @@ export function MenuItemList({
         list
             // Setup item properties with calculated attributes
             .map(item => ({
-                id: item.id,
+                key: item.id,
                 className: getDynamicDataItemValue(className, item),
                 label: getDynamicDataItemValue(label, item),
-                icon: icon,
-                buttonStyle: buttonStyle,
-                border: border,
+                icon,
+                buttonStyle,
+                border,
                 onClick: getDynamicDataItemValue(onClick, item),
                 visible: getDynamicDataItemValue(visible, item)
             }))
@@ -78,7 +78,7 @@ export function MenuItemList({
             }))
 
             // Setup elements
-            .map(props => <MenuItem key="props.id" {...props} />);
+            .map(props => <MenuItem key={props.key} {...props} />);
 
     return <Fragment>{createMenuItems(items)}</Fragment>;
 }
