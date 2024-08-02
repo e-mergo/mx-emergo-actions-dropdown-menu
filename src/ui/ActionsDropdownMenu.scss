@@ -1,12 +1,12 @@
 .actions-dropdown-menu-button {
     display: inline-block;
 
-    [dir="ltr"] & .action-button {
+    [dir="ltr"] & .action-button:has(+ button) {
         border-top-right-radius: 0px;
         border-bottom-right-radius: 0px;
     }
 
-    [dir="rtl"] & .action-button {
+    [dir="rtl"] & .action-button:has(+ button) {
         border-top-left-radius: 0px;
         border-bottom-left-radius: 0px;
     }
