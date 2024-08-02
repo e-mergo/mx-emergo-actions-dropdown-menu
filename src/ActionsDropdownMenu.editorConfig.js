@@ -10,7 +10,7 @@ const actionListMenuItemKeys = [
 ];
 
 // Define enumeration specific properties for menu items
-const enumerationMenuItemKeys = ["enumerationAttribute"];
+const enumerationMenuItemKeys = ["enumerationAttribute", "enumerationAttributeHideSelected"];
 
 // Define conditional properties for menu items
 const keysToHideByMenuItemType = {

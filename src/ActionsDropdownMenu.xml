@@ -138,6 +138,10 @@ Start a submenu of actions with a menu item of type 'Submenu' and end a submenu 
                                     <attributeType name="Enum" />
                                 </attributeTypes>
                             </property>
+                            <property key="enumerationAttributeHideSelected" type="boolean" defaultValue="false">
+                                <caption>Hide selected option</caption>
+                                <description />
+                            </property>
                         </propertyGroup>
                         <propertyGroup caption="General">
                             <property key="label" type="textTemplate" required="false">

@@ -7,14 +7,23 @@ import { MenuItem } from "./MenuItem";
  *
  * @since 1.4.0
  *
- * @param {String}   options.className            Menu item class name.
- * @param {Object}   options.enumerationAttribute Enumeration attribute.
- * @param {Function} options.onClick              Menu item onClick handler.
- * @param {Object}   options.icon                 Menu item icon attribute. See {@link https://docs.mendix.com/apidocs-mxsdk/apidocs/pluggable-widgets-client-apis/#icon-value}.
- * @param {String}   options.buttonStyle          Menu item button style attribute.
- * @param {Boolean}  options.border               Whether the menu item has a border.
+ * @param {String}   options.className                        Menu item class name.
+ * @param {Object}   options.enumerationAttribute             Enumeration attribute.
+ * @param {Boolean}  options.enumerationAttributeHideSelected Whether to hide the selected enumeration item.
+ * @param {Function} options.onClick                          Menu item onClick handler.
+ * @param {Object}   options.icon                             Menu item icon attribute. See {@link https://docs.mendix.com/apidocs-mxsdk/apidocs/pluggable-widgets-client-apis/#icon-value}.
+ * @param {String}   options.buttonStyle                      Menu item button style attribute.
+ * @param {Boolean}  options.border                           Whether the menu item has a border.
  */
-export function MenuItemEnum({ className, enumerationAttribute: attr, onClick, icon, buttonStyle, border }) {
+export function MenuItemEnum({
+    className,
+    enumerationAttribute: attr,
+    enumerationAttributeHideSelected: hideSelected,
+    onClick,
+    icon,
+    buttonStyle,
+    border
+}) {
     /**
      * Return the dynamic or static value for the data item
      *
@@ -39,6 +48,9 @@ export function MenuItemEnum({ className, enumerationAttribute: attr, onClick, i
      */
     const createMenuItems = list =>
         list
+            // Filter list of items
+            .filter(item => !hideSelected || attr.value !== item)
+
             // Setup item properties with calculated attributes
             .map(item => ({
                 key: item,
