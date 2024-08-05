@@ -133,6 +133,7 @@ export function DropdownMenu({
                     ...item,
                     className: item.className ? item.className.value : undefined,
                     label: item.label.value,
+                    subtitle: item.subtitle.value,
                     icon: item.icon,
                     buttonStyle: "divider" !== item.itemType ? item.buttonStyle : false,
                     border: item.border,

@@ -35,6 +35,11 @@
     .btn.active {
         box-shadow: none;
     }
+
+    .root-label,
+    .menu-item-caption {
+        display: inline;
+    }
 }
 
 .actions-dropdown-menu,
@@ -51,6 +56,7 @@
         flex-direction: row;
         grid-gap: 8px;
         min-width: 140px;
+        // max-width: 260px; // Set in case of long label/subtitle
         user-select: none;
 
         &:not(:first-child) {
@@ -84,6 +90,23 @@
 
             [dir="rtl"] & {
                 text-align: right;
+            }
+        }
+
+        .menu-item-caption {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+
+            [dir="rtl"] & {
+                text-align: right;
+            }
+
+            .menu-item-subtitle {
+                white-space: normal;
+                font-size: 0.9em;
+                opacity: 0.7;
             }
         }
 

@@ -252,8 +252,12 @@ export const MenuComponent = forwardRef(
                             tabIndex={tabIndex}
                             {...props}
                         >
-                            <Icon icon={icon} />
-                            {label}
+                            <div className="root-label">
+                                <Icon icon={icon} />
+                                <div className="menu-item-caption">
+                                    <span className="menu-item-label">{label}</span>
+                                </div>
+                            </div>
                         </button>
                     )}
                     <MenuButton
@@ -278,10 +282,15 @@ export const MenuComponent = forwardRef(
                         )}
                     >
                         {!isActionTrigger && (
-                            <span className="submenu-label">
+                            <div className={classNames(isNested ? "submenu-label" : "root-label")}>
                                 <Icon icon={icon} />
-                                {label}
-                            </span>
+                                <div className="menu-item-caption">
+                                    <span className="menu-item-label">{label}</span>
+                                    {isNested && props.subtitle && (
+                                        <span className="menu-item-subtitle">{props.subtitle}</span>
+                                    )}
+                                </div>
+                            </div>
                         )}
                         {showDropdownIcon && (
                             <Fragment>

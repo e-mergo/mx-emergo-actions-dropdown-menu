@@ -13,13 +13,14 @@ import { MenuContext } from "./MenuContext";
  *
  * @param {String}  options.className   Menu item class name.
  * @param {String}  options.label       Menu item label attribute.
+ * @param {String}  options.subtitle    Menu item subtitle attribute.
  * @param {Object}  options.icon        Menu item icon attribute. See {@link https://docs.mendix.com/apidocs-mxsdk/apidocs/pluggable-widgets-client-apis/#icon-value}.
  * @param {String}  options.buttonStyle Menu item button style attribute.
  * @param {Boolean} options.border      Whether the menu item has a border.
  * @param {Boolean} options.disabled    Whether the menu item is disabled.
  */
 export const MenuItem = forwardRef(
-    ({ className, label, icon, buttonStyle, border, disabled, ...props }, forwardedRef) => {
+    ({ className, label, subtitle, icon, buttonStyle, border, disabled, ...props }, forwardedRef) => {
         // Using the menu context
         const { getItemProps, activeIndex, setHasFocusInside } = useContext(MenuContext);
 
@@ -59,7 +60,10 @@ export const MenuItem = forwardRef(
                 disabled={disabled}
             >
                 <Icon icon={icon} />
-                {label}
+                <div className="menu-item-caption">
+                    <span className="menu-item-label">{label}</span>
+                    {subtitle && <span className="menu-item-subtitle">{subtitle}</span>}
+                </div>
             </button>
         );
     }

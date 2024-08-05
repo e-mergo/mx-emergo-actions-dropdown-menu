@@ -133,7 +133,7 @@ Start a submenu of actions with a menu item of type 'Submenu' and end a submenu 
                             <property key="enumerationAttribute" type="attribute">
                                 <caption>Attribute</caption>
                                 <description
-                                >Enumeration values cannot be used in expressions for captions, visibility or class names.</description>
+                                >Enumeration values cannot be used in expressions for captions, subtitle, visibility or class names.</description>
                                 <attributeTypes>
                                     <attributeType name="Enum" />
                                 </attributeTypes>
@@ -155,6 +155,19 @@ Start a submenu of actions with a menu item of type 'Submenu' and end a submenu 
                                 required="true"
                             >
                                 <caption>Caption</caption>
+                                <description />
+                            </property>
+                            <property key="subtitle" type="textTemplate" required="false">
+                                <caption>Subtitle</caption>
+                                <description />
+                            </property>
+                            <property
+                                key="actionListSubtitle"
+                                type="textTemplate"
+                                dataSource="actionListDatasource"
+                                required="false"
+                            >
+                                <caption>Subtitle</caption>
                                 <description />
                             </property>
                             <property key="icon" type="icon" required="false">

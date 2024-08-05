@@ -4,6 +4,7 @@ import { hidePropertiesIn, hideNestedPropertiesIn } from "@mendix/pluggable-widg
 const actionListMenuItemKeys = [
     "actionListDatasource",
     "actionListLabel",
+    "actionListSubtitle",
     "actionListOnClick",
     "actionListVisible",
     "actionListClassName"
@@ -15,14 +16,23 @@ const enumerationMenuItemKeys = ["enumerationAttribute", "enumerationAttributeHi
 // Define conditional properties for menu items
 const keysToHideByMenuItemType = {
     action: [...actionListMenuItemKeys, ...enumerationMenuItemKeys],
-    actionList: [...enumerationMenuItemKeys, "label", "onClick", "visible", "className"],
-    enumeration: [...actionListMenuItemKeys, "label"],
-    divider: [...actionListMenuItemKeys, ...enumerationMenuItemKeys, "onClick", "icon", "buttonStyle", "border"],
+    actionList: [...enumerationMenuItemKeys, "label", "subtitle", "onClick", "visible", "className"],
+    enumeration: [...actionListMenuItemKeys, "label", "subtitle"],
+    divider: [
+        ...actionListMenuItemKeys,
+        ...enumerationMenuItemKeys,
+        "subtitle",
+        "onClick",
+        "icon",
+        "buttonStyle",
+        "border"
+    ],
     submenu: [...actionListMenuItemKeys, ...enumerationMenuItemKeys, "onClick", "border"],
     submenuEnd: [
         ...actionListMenuItemKeys,
         ...enumerationMenuItemKeys,
         "label",
+        "subtitle",
         "onClick",
         "icon",
         "buttonStyle",

@@ -10,6 +10,7 @@ import { setupActionCallback } from "../util";
  * @param {String}  options.actionListClassName  Menu item class name.
  * @param {Object}  options.actionListDatasource Datasource for menu items.
  * @param {Object}  options.actionListLabel      Menu item label handler.
+ * @param {Object}  options.actionListSubtitle   Menu item subtitle handler.
  * @param {Object}  options.actionListOnClick    Menu item onClick handler.
  * @param {Object}  options.icon                 Menu item icon attribute. See {@link https://docs.mendix.com/apidocs-mxsdk/apidocs/pluggable-widgets-client-apis/#icon-value}.
  * @param {String}  options.buttonStyle          Menu item button style attribute.
@@ -21,6 +22,7 @@ export function MenuItemList({
     actionListClassName: className,
     actionListDatasource: { items },
     actionListLabel: label,
+    actionListSubtitle: subtitle,
     actionListOnClick: onClick,
     icon,
     buttonStyle,
@@ -55,6 +57,7 @@ export function MenuItemList({
                 key: item.id,
                 className: getDynamicDataItemValue(className, item),
                 label: getDynamicDataItemValue(label, item),
+                subtitle: getDynamicDataItemValue(subtitle, item),
                 icon,
                 buttonStyle,
                 border,
@@ -73,6 +76,7 @@ export function MenuItemList({
                 ...item,
                 className: item.className ? item.className.value : undefined,
                 label: item.label ? item.label.value : undefined,
+                subtitle: item.subtitle ? item.subtitle.value : undefined,
                 onClick: setupActionCallback(item.onClick),
                 visible: item.visible ? item.visible.value : undefined
             }))
