@@ -68,7 +68,7 @@ Set the menu items of the dropdown menu. Choose from the following types of menu
 
 -   **Action** This type defines a single actionable menu item.
 -   **Data source** This type defines multiple actionable menu items based on objects from a data source.
--   **Enumeration** This type defines multiple actionable menu items based on values in an enumeration. When clicking a menu item, the enumeration attribute is changed to the selected value and the configured onClick event is executed thereafter. Enumeration values cannot be used in expressions for captions, visibility or class names. All menu items get the 'enum-item__{Value}' class. The selected menu item gets the 'enum-item-selected' class.
+-   **Enumeration** This type defines multiple actionable menu items based on values in an enumeration. When clicking a menu item, the enumeration attribute is changed to the selected value and the configured onClick event is executed afterwards. Enumeration values cannot be used in expressions for captions, subtitles, visibility or class names. All menu items get the 'enum-item__{Value}' class. The selected menu item gets the 'enum-item-selected' class. Use _Hide selected option_ to remove the selected menu item from the menu.
 -   **Divider** This type defines a dividing line with an optional caption.
 -   **Submenu** This type indicates the start of a subset of menu items.
 -   **Submenu end** This type indicates the end of a submenu.
@@ -80,6 +80,7 @@ The following attributes may be set on a menu item:
 -   Data source
 -   Attribute
 -   Caption
+-   Subtitle
 -   Icon
 -   Button style
 -   Border
@@ -122,6 +123,12 @@ E-mergo provides paid support through standard support contracts. For other scen
 Requests for additional features can be posted in the widget's GitHub repository. Depending on your own code samples and the availability of E-mergo developers your request may be considered and included.
 
 ## Changelog
+
+#### 1.5.0 - 20240805
+
+-   Added the _Subtitle_ attribute for menu items.
+-   Added the _Hide selected option_ attribute for Enumeration menu items.
+-   Fixed styling for RTL layouts and menu item labels with icons.
 
 #### 1.4.0 - 20240322
 
