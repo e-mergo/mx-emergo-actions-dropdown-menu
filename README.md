@@ -124,6 +124,10 @@ Requests for additional features can be posted in the widget's GitHub repository
 
 ## Changelog
 
+#### 1.5.1 - 20241026
+
+-   Fixed key assignment for main menu items, fixing a React error on missing keys.
+
 #### 1.5.0 - 20240805
 
 -   Added the _Subtitle_ attribute for menu items.
