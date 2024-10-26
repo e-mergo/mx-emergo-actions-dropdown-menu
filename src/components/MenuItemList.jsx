@@ -82,6 +82,7 @@ export function MenuItemList({
             }))
 
             // Setup elements
+            // Explicit key attribution to satisfy linter react/jsx-key
             .map(props => <MenuItem key={props.key} {...props} />);
 
     return <Fragment>{createMenuItems(items)}</Fragment>;

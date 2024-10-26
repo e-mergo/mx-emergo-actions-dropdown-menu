@@ -1,4 +1,5 @@
 import { createElement } from "react";
+import { v4 as uuid } from "uuid";
 import classNames from "classnames";
 import { Menu } from "./Menu";
 import { MenuDivider } from "./MenuDivider";
@@ -131,6 +132,7 @@ export function DropdownMenu({
                 // Prepare props
                 const props = {
                     ...item,
+                    key: uuid(),
                     className: item.className ? item.className.value : undefined,
                     label: item.label.value,
                     subtitle: item.subtitle.value,

@@ -65,6 +65,7 @@ export function MenuItemEnum({
             }))
 
             // Setup elements
+            // Explicit key attribution to satisfy linter react/jsx-key
             .map(props => <MenuItem key={props.key} {...props} />);
 
     // Perhaps do not render component
