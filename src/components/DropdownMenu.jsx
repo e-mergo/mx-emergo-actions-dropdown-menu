@@ -143,27 +143,28 @@ export function DropdownMenu({
                     visible: item.visible.value
                 };
 
-                // Add submenu, require visible items
-                if ("submenu" === item.itemType) {
-                    const children = createMenuItems(item.list);
-
-                    return children.length ? <Menu {...props}>{children}</Menu> : null;
-
-                    // Add divider item
-                } else if ("divider" === item.itemType) {
-                    return <MenuDivider {...props} />;
-
+                switch (item.itemType) {
                     // Add list of menu items
-                } else if ("actionList" === item.itemType) {
-                    return <MenuItemList {...props} />;
+                    case "actionList":
+                        return <MenuItemList {...props} />;
 
                     // Add menu items from enumeration
-                } else if ("enumeration" === item.itemType) {
-                    return <MenuItemEnum {...props} />;
+                    case "enumeration":
+                        return <MenuItemEnum {...props} />;
+
+                    // Add divider item
+                    case "divider":
+                        return <MenuDivider {...props} />;
+
+                    // Add submenu, require visible items
+                    case "submenu": {
+                        const children = createMenuItems(item.list);
+                        return children.length ? <Menu {...props}>{children}</Menu> : null;
+                    }
 
                     // Add generic menu item
-                } else {
-                    return <MenuItem {...props} />;
+                    default:
+                        return <MenuItem {...props} />;
                 }
             })
 
