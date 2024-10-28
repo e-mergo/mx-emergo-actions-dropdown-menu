@@ -4,8 +4,9 @@ import classNames from "classnames";
 import { Menu } from "./Menu";
 import { MenuDivider } from "./MenuDivider";
 import { MenuItem } from "./MenuItem";
-import { MenuItemList } from "./MenuItemList";
+import { MenuItemBoolean } from "./MenuItemBoolean";
 import { MenuItemEnum } from "./MenuItemEnum";
+import { MenuItemList } from "./MenuItemList";
 import { setupActionCallback } from "../util";
 
 /**
@@ -148,13 +149,17 @@ export function DropdownMenu({
                     case "actionList":
                         return <MenuItemList {...props} />;
 
-                    // Add menu items from enumeration
-                    case "enumeration":
-                        return <MenuItemEnum {...props} />;
+                    // Add boolean menu item
+                    case "boolean":
+                        return <MenuItemBoolean {...props} />;
 
                     // Add divider item
                     case "divider":
                         return <MenuDivider {...props} />;
+
+                    // Add menu items from enumeration
+                    case "enumeration":
+                        return <MenuItemEnum {...props} />;
 
                     // Add submenu, require visible items
                     case "submenu": {

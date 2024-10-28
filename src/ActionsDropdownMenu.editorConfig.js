@@ -1,5 +1,8 @@
 import { hidePropertiesIn, hideNestedPropertiesIn } from "@mendix/pluggable-widgets-tools";
 
+// Define boolean specific properties for menu items
+const booleanMenuItemKeys = ["booleanAttribute"];
+
 // Define actionList specific properties for menu items
 const actionListMenuItemKeys = [
     "actionListDatasource",
@@ -15,10 +18,20 @@ const enumerationMenuItemKeys = ["enumerationAttribute", "enumerationAttributeHi
 
 // Define conditional properties for menu items
 const keysToHideByMenuItemType = {
-    action: [...actionListMenuItemKeys, ...enumerationMenuItemKeys],
-    actionList: [...enumerationMenuItemKeys, "label", "subtitle", "onClick", "visible", "className"],
-    enumeration: [...actionListMenuItemKeys, "label", "subtitle"],
+    action: [...booleanMenuItemKeys, ...actionListMenuItemKeys, ...enumerationMenuItemKeys],
+    actionList: [
+        ...booleanMenuItemKeys,
+        ...enumerationMenuItemKeys,
+        "label",
+        "subtitle",
+        "onClick",
+        "visible",
+        "className"
+    ],
+    enumeration: [...booleanMenuItemKeys, ...actionListMenuItemKeys, "label", "subtitle"],
+    boolean: [...actionListMenuItemKeys, ...enumerationMenuItemKeys],
     divider: [
+        ...booleanMenuItemKeys,
         ...actionListMenuItemKeys,
         ...enumerationMenuItemKeys,
         "subtitle",
@@ -27,8 +40,9 @@ const keysToHideByMenuItemType = {
         "buttonStyle",
         "border"
     ],
-    submenu: [...actionListMenuItemKeys, ...enumerationMenuItemKeys, "onClick", "border"],
+    submenu: [...booleanMenuItemKeys, ...actionListMenuItemKeys, ...enumerationMenuItemKeys, "onClick", "border"],
     submenuEnd: [
+        ...booleanMenuItemKeys,
         ...actionListMenuItemKeys,
         ...enumerationMenuItemKeys,
         "label",

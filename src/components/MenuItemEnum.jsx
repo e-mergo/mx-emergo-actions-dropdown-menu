@@ -25,7 +25,7 @@ export function MenuItemEnum({
     border
 }) {
     /**
-     * Return the dynamic or static value for the data item
+     * Return the callback for the onClick action of the item
      *
      * @param  {String}   item Enum key
      * @return {Function}      Action callback

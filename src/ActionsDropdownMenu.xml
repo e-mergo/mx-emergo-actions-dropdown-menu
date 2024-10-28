@@ -117,15 +117,23 @@ Start a submenu of actions with a menu item of type 'Submenu' and end a submenu 
                                 >Select 'Submenu' to start a submenu of actions. Select 'Submenu end' to indicate a previously started submenu of actions has ended.</description>
                                 <enumerationValues>
                                     <enumerationValue key="action">Action</enumerationValue>
+                                    <enumerationValue key="boolean">Boolean</enumerationValue>
                                     <enumerationValue key="actionList">Data source</enumerationValue>
-                                    <enumerationValue key="enumeration">Enumeration</enumerationValue>
                                     <enumerationValue key="divider">Divider</enumerationValue>
+                                    <enumerationValue key="enumeration">Enumeration</enumerationValue>
                                     <enumerationValue key="submenu">Submenu</enumerationValue>
                                     <enumerationValue key="submenuEnd">Submenu end</enumerationValue>
                                 </enumerationValues>
                             </property>
                         </propertyGroup>
                         <propertyGroup caption="Data source">
+                            <property key="booleanAttribute" type="attribute">
+                                <caption>Attribute</caption>
+                                <description />
+                                <attributeTypes>
+                                    <attributeType name="Boolean" />
+                                </attributeTypes>
+                            </property>
                             <property key="actionListDatasource" type="datasource" isList="true">
                                 <caption>Data source</caption>
                                 <description />
