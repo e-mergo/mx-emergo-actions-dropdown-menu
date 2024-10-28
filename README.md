@@ -67,13 +67,14 @@ Set the menu dropdown icon with a icon or image from the icon library. By defaul
 Set the menu items of the dropdown menu. Choose from the following types of menu items:
 
 -   **Action** This type defines a single actionable menu item.
+-   **Boolean** This type defines a single actionable menu item based on a boolean attribute. When clicking the menu item, the boolean attribute is changed to the inverted value and the configured onClick event is executed afterwards. When the attribute is True, the menu item gets the 'boolean-item-active' class. When False, the menu item gets the 'boolean-item-inactive' class.
 -   **Data source** This type defines multiple actionable menu items based on objects from a data source.
--   **Enumeration** This type defines multiple actionable menu items based on values in an enumeration. When clicking a menu item, the enumeration attribute is changed to the selected value and the configured onClick event is executed afterwards. Enumeration values cannot be used in expressions for captions, subtitles, visibility or class names. All menu items get the 'enum-item__{Value}' class. The selected menu item gets the 'enum-item-selected' class. Use _Hide selected option_ to remove the selected menu item from the menu.
+-   **Enumeration** This type defines multiple actionable menu items based on values in an enumeration available for an enumeration attribute. When clicking a menu item, the enumeration attribute is changed to the selected value and the configured onClick event is executed afterwards. Enumeration values cannot be used in expressions for captions, subtitles, visibility or class names. All menu items get the 'enum-item__{Value}' class. The selected menu item gets the 'enum-item-selected' class. Use _Hide selected option_ to remove the selected menu item from the menu.
 -   **Divider** This type defines a dividing line with an optional caption.
 -   **Submenu** This type indicates the start of a subset of menu items.
 -   **Submenu end** This type indicates the end of a submenu.
 
-The list of menu items is a flat list, which means that submenus are not defined in a visual hierarchy. Submenus are defined as menu items just like actions. Start a submenu of actions with a menu item of type _Submenu_ and end a submenu with a menu item of type _Submenu end_. Submenus without a subsequent _Submenu end_ will contain all subsequent actions. There is no limit to the amount of nested submenus.
+The list of menu items is a flat list, which means that submenus are not defined in a visual hierarchy. Submenus are defined as menu items just like actions. Start a submenu of actions with a menu item of type _Submenu_ and end a submenu with a menu item of type _Submenu end_. Submenus without a subsequent _Submenu end_ will contain all subsequent menu items. There is no limit to the amount of nested submenus.
 
 The following attributes may be set on a menu item:
 
@@ -87,6 +88,8 @@ The following attributes may be set on a menu item:
 -   On click event
 -   Visible
 -   Class
+
+Tip: clicking a _Boolean_ or _Enumeration_ menu item results in changes in the related attribute, but the changes are not committed. To commit the changes in the attribute, use the onClick action to trigger a microflow in which the change is handled and committed. If the change is not committed, any triggered rollback (Cancel changes) will result in losing the change.
 
 ### Hide empty menu
 
