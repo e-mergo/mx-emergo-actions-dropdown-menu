@@ -127,6 +127,10 @@ Requests for additional features can be posted in the widget's GitHub repository
 
 ## Changelog
 
+#### 1.6.0 - 20241028
+
+-   Added the _Boolean_ menu item type. This type defines a single menu item based on a boolean attribute.
+
 #### 1.5.1 - 20241026
 
 -   Fixed key assignment for main menu items, fixing a React error on missing keys.
