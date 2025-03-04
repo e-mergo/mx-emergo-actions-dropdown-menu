@@ -30,6 +30,10 @@ Set the menu button label with plain text or use parameters to create a dynamic 
 
 Set the menu button icon with a icon or image from the icon library.
 
+### Render mode
+
+Set the render mode of the trigger element: button or link. The link render mode does not support click interaction combined with an on click event.
+
 ### Button style
 
 Set the button style of the menu button with a choice from the familiar set of styles.
@@ -89,7 +93,11 @@ The following attributes may be set on a menu item:
 -   Visible
 -   Class
 
-Tip: clicking a _Boolean_ or _Enumeration_ menu item results in changes in the related attribute, but the changes are not committed. To commit the changes in the attribute, use the onClick action to trigger a microflow in which the change is handled and committed. If the change is not committed, any triggered rollback (Cancel changes) will result in losing the change.
+Tip: clicking a _Boolean_ or _Enumeration_ menu item results in setting a new value in the related attribute, but the changes are not committed. To commit the changes in the attribute, use the onClick action to trigger a microflow in which the change is handled and committed. If the change is not committed, any triggered rollback (Cancel changes) will result in losing the change.
+
+### Menu class
+
+Set an expression for the dynamic class name of the dropdown menu.
 
 ### Hide empty menu
 
