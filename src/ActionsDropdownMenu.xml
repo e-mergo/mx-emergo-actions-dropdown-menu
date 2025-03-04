@@ -24,6 +24,14 @@
                     <caption>Icon</caption>
                     <description />
                 </property>
+                <property key="renderMode" type="enumeration" defaultValue="button">
+                    <caption>Render mode</caption>
+                    <description />
+                    <enumerationValues>
+                        <enumerationValue key="button">Button</enumerationValue>
+                        <enumerationValue key="link">Link</enumerationValue>
+                    </enumerationValues>
+                </property>
                 <property key="buttonStyle" type="enumeration" defaultValue="default">
                     <caption>Button style</caption>
                     <description />

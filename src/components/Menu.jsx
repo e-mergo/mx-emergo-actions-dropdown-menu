@@ -41,6 +41,7 @@ import { MenuContext } from "./MenuContext";
  * @param {String}  options.className             Element class name.
  * @param {String}  options.label                 Menu label attribute.
  * @param {Object}  options.icon                  Menu action icon attribute. See {@link https://docs.mendix.com/apidocs-mxsdk/apidocs/pluggable-widgets-client-apis/#icon-value}.
+ * @param {Object}  options.renderMode            Menu render mode attribute.
  * @param {Object}  options.dropdownIcon          Menu dropdown icon attribute. See {@link https://docs.mendix.com/apidocs-mxsdk/apidocs/pluggable-widgets-client-apis/#icon-value}.
  * @param {Object}  options.menuClassName         Menu menu class name attribute.
  * @param {String}  options.buttonStyle           Menu button style attribute.
@@ -61,6 +62,7 @@ export const MenuComponent = forwardRef(
             className,
             label,
             icon,
+            renderMode,
             dropdownIcon,
             menuClassName,
             buttonStyle,
@@ -117,6 +119,9 @@ export const MenuComponent = forwardRef(
 
         // Check whether to show the root menu button
         const showDropdownIcon = !isNested && "icon" === hideDropdownWhenEmpty ? !!children.length : true;
+
+        // Check whether to render the element as a link
+        const isLink = !isNested && "link" === renderMode;
 
         // Check whether the UI is in RTL
         const isRtl = "rtl" === window.mx.session.sessionData.uiconfig.direction; // Mx global
@@ -248,9 +253,11 @@ export const MenuComponent = forwardRef(
                     {isActionTrigger && showDropdown && (
                         <button
                             type="button"
-                            className={classNames("btn mx-button action-button", `btn-${actionButtonStyle}`, {
-                                "btn-bordered": actionButtonBorder
-                            })}
+                            className={classNames(
+                                "btn mx-button action-button",
+                                { "btn-bordered": actionButtonBorder },
+                                `btn-${actionButtonStyle}`
+                            )}
                             tabIndex={tabIndex}
                             {...props}
                         >
@@ -264,10 +271,13 @@ export const MenuComponent = forwardRef(
                     )}
                     <MenuButton
                         ref={useMergeRefs([refs.setReference, ref, forwardedRef])}
-                        className={classNames(!isActionTrigger ? className : undefined, `btn-${buttonStyle}`, {
-                            "btn-bordered": border
+                        className={classNames({
+                            [className]: !isActionTrigger,
+                            "btn-bordered": border,
+                            [`btn-${buttonStyle}`]: !isLink
                         })}
                         hideButton={!showDropdown || (isActionTrigger && !showDropdownIcon)}
+                        isLink={isLink}
                         isNested={isNested}
                         isOpen={isOpen}
                         hasFocusInside={hasFocusInside}

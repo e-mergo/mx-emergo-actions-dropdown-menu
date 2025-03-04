@@ -18,6 +18,7 @@ import { setupActionCallback } from "../util";
  * @param {Array}   options.items                 Menu items attribute.
  * @param {String}  options.label                 Menu caption attribute.
  * @param {String}  options.icon                  Menu action icon attribute. See {@link https://docs.mendix.com/apidocs-mxsdk/apidocs/pluggable-widgets-client-apis/#icon-value}.
+ * @param {String}  options.renderMode            Menu render mode attribute.
  * @param {String}  options.dropdownIcon          Menu dropdown icon attribute. See {@link https://docs.mendix.com/apidocs-mxsdk/apidocs/pluggable-widgets-client-apis/#icon-value}.
  * @param {String}  options.menuClassName         Menu class name attribute.
  * @param {String}  options.buttonStyle           Menu button style attribute.
@@ -36,6 +37,7 @@ export function DropdownMenu({
     items,
     label,
     icon,
+    renderMode,
     dropdownIcon,
     menuClassName,
     buttonStyle,
@@ -183,6 +185,7 @@ export function DropdownMenu({
             className={classNames(className, "actions-dropdown-menu-button")}
             label={label}
             icon={icon}
+            renderMode={renderMode}
             dropdownIcon={dropdownIcon}
             menuClassName={menuClassName}
             buttonStyle={buttonStyle}
