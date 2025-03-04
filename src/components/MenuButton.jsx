@@ -29,13 +29,13 @@ export const MenuButton = forwardRef(
                 ref: forwardedRef,
                 type: !isLink ? "button" : undefined,
                 className: classNames(
-                    isNested ? "menu-item" : "root-menu",
                     {
                         "btn mx-button": !isLink,
-                        "mx-link": isLink,
-                        active: isNested ? isOpen && hasFocusInside : isOpen
+                        "mx-link": isLink
                     },
-                    className
+                    className,
+                    { active: isNested ? isOpen && hasFocusInside : isOpen },
+                    isNested ? "menu-item" : "root-menu"
                 ),
                 role: isNested ? "menuitem" : undefined,
                 "data-open": isOpen ? "" : undefined,

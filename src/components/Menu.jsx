@@ -272,7 +272,7 @@ export const MenuComponent = forwardRef(
                     <MenuButton
                         ref={useMergeRefs([refs.setReference, ref, forwardedRef])}
                         className={classNames({
-                            [className]: !isActionTrigger,
+                            [className || ""]: !isActionTrigger,
                             "btn-bordered": border,
                             [`btn-${buttonStyle}`]: !isLink
                         })}
@@ -333,9 +333,9 @@ export const MenuComponent = forwardRef(
                                     <div
                                         ref={refs.setFloating}
                                         className={classNames({
-                                            [menuClassName]: !isNested,
                                             "actions-dropdown-menu": !isNested,
-                                            "actions-dropdown-submenu": isNested
+                                            "actions-dropdown-submenu": isNested,
+                                            [menuClassName || ""]: !isNested
                                         })}
                                         style={floatingStyles}
                                         {...getFloatingProps()}

@@ -137,10 +137,11 @@ export function DropdownMenu({
                 // Prepare props
                 const props = {
                     ...item,
+                    list: undefined, // Remove list for component render
                     key: uuid(),
-                    className: item.className?.value,
-                    label: item.label?.value,
-                    subtitle: item.subtitle?.value,
+                    className: item.className?.value || undefined,
+                    label: item.label?.value || undefined,
+                    subtitle: item.subtitle?.value || undefined,
                     icon: item.icon,
                     buttonStyle: "divider" !== item.itemType ? item.buttonStyle : false,
                     border: item.border,
