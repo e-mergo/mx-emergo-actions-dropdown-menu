@@ -111,17 +111,17 @@ export const MenuComponent = forwardRef(
         // Check whether the current node is nested
         const isNested = parentId !== null;
 
-        // Check whether the root button also triggers actions
-        const isActionTrigger = !isNested && !!props.onClick;
+        // Check whether to render the element as a link
+        const isLink = !isNested && "link" === renderMode;
+
+        // Check whether the root button also triggers actions. Not for links.
+        const isActionTrigger = !isNested && !!props.onClick && !isLink;
 
         // Check whether to show the root menu button
         const showDropdown = !isNested && "yes" === hideDropdownWhenEmpty ? !!children.length : true;
 
         // Check whether to show the root menu button
         const showDropdownIcon = !isNested && "icon" === hideDropdownWhenEmpty ? !!children.length : true;
-
-        // Check whether to render the element as a link
-        const isLink = !isNested && "link" === renderMode;
 
         // Check whether the UI is in RTL
         const isRtl = "rtl" === window.mx.session.sessionData.uiconfig.direction; // Mx global
@@ -282,16 +282,22 @@ export const MenuComponent = forwardRef(
                         isOpen={isOpen}
                         hasFocusInside={hasFocusInside}
                         tabIndex={!isNested ? tabIndex : parent.activeIndex === index ? 0 : -1}
-                        {...getReferenceProps(
-                            parent.getItemProps({
+                        {...getReferenceProps({
+                            ...parent.getItemProps({
                                 ...(!isActionTrigger && props),
                                 onFocus(event) {
                                     if (!isActionTrigger) props.onFocus?.(event);
                                     setHasFocusInside(false);
                                     parent.setHasFocusInside(true);
                                 }
-                            })
-                        )}
+                            }),
+                            onClick(event) {
+                                if (props.onClick) {
+                                    props.onClick(event);
+                                    tree.events.emit("click");
+                                }
+                            }
+                        })}
                     >
                         {!isActionTrigger && (
                             <div className={classNames(isNested ? "submenu-label" : "root-label")}>

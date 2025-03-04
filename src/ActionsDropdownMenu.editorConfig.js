@@ -68,8 +68,6 @@ export function getProperties(values, defaultProperties, target) {
     // Conditional event property
     if (!values.onClick) {
         hidePropertiesIn(defaultProperties, values, ["actionButtonStyle", "actionButtonBorder"]);
-    } else {
-        hidePropertiesIn(defaultProperties, values, ["renderMode"]);
     }
 
     // Links cannot do actions AND menus
@@ -77,10 +75,13 @@ export function getProperties(values, defaultProperties, target) {
         hidePropertiesIn(defaultProperties, values, [
             "buttonStyle",
             "border",
-            "onClick",
             "actionButtonStyle",
             "actionButtonBorder"
         ]);
+
+        if ("click" === values.openOn) {
+            hidePropertiesIn(defaultProperties, values, ["onClick"]);
+        }
     }
 
     // Walk menu items
