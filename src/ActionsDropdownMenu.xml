@@ -50,7 +50,7 @@
                     <description />
                 </property>
                 <property key="openOn" type="enumeration" defaultValue="hover">
-                    <caption>Open on</caption>
+                    <caption>Interaction</caption>
                     <description />
                     <enumerationValues>
                         <enumerationValue key="click">Click</enumerationValue>
