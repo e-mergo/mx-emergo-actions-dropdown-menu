@@ -12,6 +12,7 @@ import "./ui/ActionsDropdownMenu.scss";
  * @param {String}  options.label                 Menu caption attribute.
  * @param {String}  options.icon                  Menu action icon attribute. See {@link https://docs.mendix.com/apidocs-mxsdk/apidocs/pluggable-widgets-client-apis/#icon-value}.
  * @param {String}  options.dropdownIcon          Menu dropdown icon attribute. See {@link https://docs.mendix.com/apidocs-mxsdk/apidocs/pluggable-widgets-client-apis/#icon-value}.
+ * @param {String}  options.menuClassName         Menu class name attribute.
  * @param {String}  options.buttonStyle           Menu button style attribute.
  * @param {Boolean} options.border                Whether the menu button has a border.
  * @param {String}  options.openOn                Menu interaction attribute.
@@ -29,6 +30,7 @@ export function ActionsDropdownMenu({
     label,
     icon,
     dropdownIcon,
+    menuClassName,
     buttonStyle,
     border,
     openOn,
@@ -44,9 +46,10 @@ export function ActionsDropdownMenu({
         <DropdownMenu
             className={className}
             items={items}
-            label={label.value}
+            label={label?.value}
             icon={icon}
             dropdownIcon={dropdownIcon}
+            menuClassName={menuClassName?.value}
             buttonStyle={buttonStyle}
             border={border}
             interaction={openOn}

@@ -19,6 +19,7 @@ import { setupActionCallback } from "../util";
  * @param {String}  options.label                 Menu caption attribute.
  * @param {String}  options.icon                  Menu action icon attribute. See {@link https://docs.mendix.com/apidocs-mxsdk/apidocs/pluggable-widgets-client-apis/#icon-value}.
  * @param {String}  options.dropdownIcon          Menu dropdown icon attribute. See {@link https://docs.mendix.com/apidocs-mxsdk/apidocs/pluggable-widgets-client-apis/#icon-value}.
+ * @param {String}  options.menuClassName         Menu class name attribute.
  * @param {String}  options.buttonStyle           Menu button style attribute.
  * @param {Boolean} options.border                Whether the menu button has a border.
  * @param {String}  options.interaction           Menu interaction attribute.
@@ -36,6 +37,7 @@ export function DropdownMenu({
     label,
     icon,
     dropdownIcon,
+    menuClassName,
     buttonStyle,
     border,
     interaction,
@@ -118,14 +120,14 @@ export function DropdownMenu({
     const createMenuItems = list =>
         list
             // Remove invisible items
-            .filter(item => item.visible.value)
+            .filter(item => item.visible?.value)
 
             // Remove unauthorized actions
             .filter(item => !item.onClick || item.onClick.isAuthorized)
 
             // Remove leading dividers without label and trailing dividers
             .filter((item, index, arr) =>
-                "divider" === item.itemType ? (0 !== index || item.label.value) && index !== arr.length - 1 : true
+                "divider" === item.itemType ? (0 !== index || item.label?.value) && index !== arr.length - 1 : true
             )
 
             // Setup elements
@@ -134,14 +136,14 @@ export function DropdownMenu({
                 const props = {
                     ...item,
                     key: uuid(),
-                    className: item.className ? item.className.value : undefined,
-                    label: item.label.value,
-                    subtitle: item.subtitle.value,
+                    className: item.className?.value,
+                    label: item.label?.value,
+                    subtitle: item.subtitle?.value,
                     icon: item.icon,
                     buttonStyle: "divider" !== item.itemType ? item.buttonStyle : false,
                     border: item.border,
                     onClick: setupActionCallback(item.onClick),
-                    visible: item.visible.value
+                    visible: item.visible?.value
                 };
 
                 switch (item.itemType) {
@@ -182,6 +184,7 @@ export function DropdownMenu({
             label={label}
             icon={icon}
             dropdownIcon={dropdownIcon}
+            menuClassName={menuClassName}
             buttonStyle={buttonStyle}
             border={border}
             interaction={interaction}

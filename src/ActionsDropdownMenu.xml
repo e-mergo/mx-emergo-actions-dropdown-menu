@@ -248,6 +248,11 @@ Start a submenu of actions with a menu item of type 'Submenu' and end a submenu 
                     </propertyGroup>
                 </properties>
             </property>
+            <property key="menuClassName" type="expression" required="false">
+                <caption>Menu class</caption>
+                <description />
+                <returnType type="String" />
+            </property>
             <property key="hideDropdownWhenEmpty" type="enumeration" defaultValue="no">
                 <caption>Hide empty menu</caption>
                 <description>Hide the widget when the dropdown menu does not show any items?</description>
