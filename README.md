@@ -135,6 +135,11 @@ Requests for additional features can be posted in the widget's GitHub repository
 
 ## Changelog
 
+#### 1.7.0 - 20250304
+
+-   Added the _Render mode_ attribute for selecting whether the root trigger element should be rendered as a button or a link.
+-   Added the _Menu class_ attribute for setting the dropdown menu class name.
+
 #### 1.6.0 - 20241028
 
 -   Added the _Boolean_ menu item type. This type defines a single menu item based on a boolean attribute.
