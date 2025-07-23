@@ -27,7 +27,7 @@
         "@mendix/pluggable-widgets-tools": "^10.18.0"
     },
     "dependencies": {
-        "@floating-ui/react": "^0.27.5",
+        "@floating-ui/react": "^0.27.13",
         "classnames": "^2.5.1",
         "uuid": "^11.1.0"
     },
