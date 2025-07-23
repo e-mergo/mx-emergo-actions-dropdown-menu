@@ -292,9 +292,18 @@ export const MenuComponent = forwardRef(
                                 }
                             }),
                             onClick(event) {
-                                if (props.onClick) {
-                                    props.onClick(event);
-                                    tree.events.emit("click");
+                                if (isLink) {
+                                    // Ignore anchor href link
+                                    event.preventDefault();
+
+                                    // Allow links to execute onClick action when clicking the dropdown.
+                                    // The link's onClick event is only exposed when using hover interaction
+                                    // so the link is actionable while the menu still opens. For click
+                                    // interaction no action should run when clicking to open the menu.
+                                    if ("hover" === interaction) {
+                                        props.onClick?.(event);
+                                        tree.events.emit("click");
+                                    }
                                 }
                             }
                         })}

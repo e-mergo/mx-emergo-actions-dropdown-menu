@@ -38,7 +38,7 @@ export const MenuButton = forwardRef(
                     { active: isNested ? isOpen && hasFocusInside : isOpen },
                     isNested ? "menu-item" : "root-menu"
                 ),
-                role: isNested ? "menuitem" : (isLink ? "button" : undefined),
+                role: isNested ? "menuitem" : isLink ? "button" : undefined,
                 "data-open": isOpen ? "" : undefined,
                 "data-nested": isNested ? "" : undefined,
                 "data-focus-inside": hasFocusInside ? "" : undefined,
