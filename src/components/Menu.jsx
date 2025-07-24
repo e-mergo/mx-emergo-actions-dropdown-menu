@@ -321,7 +321,7 @@ export const MenuComponent = forwardRef(
                         )}
                         {showDropdownIcon && (
                             <Fragment>
-                                <Icon icon={dropdownIcon} />
+                                <Icon className="menu-item-open" icon={dropdownIcon} />
                                 {!dropdownIcon && <span aria-hidden className="menu-item-open caret"></span>}
                             </Fragment>
                         )}

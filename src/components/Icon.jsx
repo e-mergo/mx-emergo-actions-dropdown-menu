@@ -6,15 +6,17 @@ import classNames from "classnames";
  *
  * @since 1.0.0
  *
- * @param {Object} icon Icon object. See {@link https://docs.mendix.com/apidocs-mxsdk/apidocs/pluggable-widgets-client-apis/#icon-value}.
+ * @param {String} className Icon class name.
+ * @param {Object} icon      Icon object. See {@link https://docs.mendix.com/apidocs-mxsdk/apidocs/pluggable-widgets-client-apis/#icon-value}.
  */
-export function Icon({ icon }) {
+export function Icon({ className, icon }) {
     return (
         <Fragment>
             {icon && icon.value.iconClass && (
                 <span
                     aria-hidden
                     className={classNames(
+                        className,
                         {
                             glyphicon: "glyph" === icon.value.type
                         },
@@ -22,7 +24,7 @@ export function Icon({ icon }) {
                     )}
                 ></span>
             )}
-            {icon && icon.value.iconUrl && <img aria-hidden src={icon.value.iconUrl} />}
+            {icon && icon.value.iconUrl && <img className={className} aria-hidden src={icon.value.iconUrl} />}
         </Fragment>
     );
 }
