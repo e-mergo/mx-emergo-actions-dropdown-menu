@@ -1,6 +1,7 @@
 import { createElement, forwardRef, useContext } from "react";
 import { useFloatingTree, useListItem, useMergeRefs } from "@floating-ui/react";
 import classNames from "classnames";
+import { Caption } from "./Caption";
 import { Icon } from "./Icon";
 import { MenuContext } from "./MenuContext";
 
@@ -59,11 +60,8 @@ export const MenuItem = forwardRef(
                 tabIndex={isActive ? 0 : -1}
                 disabled={disabled}
             >
-                <Icon icon={icon} />
-                <div className="menu-item-caption">
-                    <span className="menu-item-label">{label}</span>
-                    {subtitle && <span className="menu-item-subtitle">{subtitle}</span>}
-                </div>
+                <Icon className="menu-item-icon" icon={icon} />
+                <Caption label={label} subtitle={subtitle} />
             </button>
         );
     }

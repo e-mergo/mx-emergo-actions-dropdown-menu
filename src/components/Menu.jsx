@@ -26,6 +26,7 @@ import {
 } from "@floating-ui/react";
 import classNames from "classnames";
 import { ButtonGroup } from "./ButtonGroup";
+import { Caption } from "./Caption";
 import { Icon } from "./Icon";
 import { MenuButton } from "./MenuButton";
 import { MenuContext } from "./MenuContext";
@@ -261,12 +262,12 @@ export const MenuComponent = forwardRef(
                             tabIndex={tabIndex}
                             {...props}
                         >
-                            <div className="root-label">
-                                <Icon icon={icon} />
-                                <div className="menu-item-caption">
-                                    <span className="menu-item-label">{label}</span>
+                            {(icon || label) && (
+                                <div className="root-label">
+                                    <Icon icon={icon} />
+                                    <Caption label={label} />
                                 </div>
-                            </div>
+                            )}
                         </button>
                     )}
                     <MenuButton
@@ -308,15 +309,10 @@ export const MenuComponent = forwardRef(
                             }
                         })}
                     >
-                        {!isActionTrigger && (
+                        {!isActionTrigger && (icon || label || props.subtitle) && (
                             <div className={classNames(isNested ? "submenu-label" : "root-label")}>
-                                <Icon icon={icon} />
-                                <div className="menu-item-caption">
-                                    <span className="menu-item-label">{label}</span>
-                                    {isNested && props.subtitle && (
-                                        <span className="menu-item-subtitle">{props.subtitle}</span>
-                                    )}
-                                </div>
+                                <Icon className="menu-item-icon" icon={icon} />
+                                <Caption label={label} subtitle={props.subtitle} />
                             </div>
                         )}
                         {showDropdownIcon && (
