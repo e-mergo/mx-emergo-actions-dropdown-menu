@@ -135,6 +135,14 @@ Requests for additional features can be posted in the widget's GitHub repository
 
 ## Changelog
 
+#### 1.8.0 - 20250724
+
+-   Changed widget attribute setup to not require captions for the main button or for menu items.
+-   Added classname 'menu-item-open' for menu expand icons.
+-   Added classname 'menu-item-icon' for menu caption icons.
+-   Added support for Atlas Core 4 css custom properties (variables).
+-   Fixed handling click events for the dropdown in both button and link render mode.
+
 #### 1.7.0 - 20250304
 
 -   Added the _Render mode_ attribute for selecting whether the root trigger element should be rendered as a button or a link.
