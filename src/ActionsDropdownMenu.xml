@@ -16,7 +16,7 @@
     <properties>
         <propertyGroup caption="General">
             <propertyGroup caption="General">
-                <property key="label" type="textTemplate">
+                <property key="label" type="textTemplate" required="false">
                     <caption>Caption</caption>
                     <description />
                 </property>
@@ -168,7 +168,7 @@ Start a submenu of actions with a menu item of type 'Submenu' and end a submenu 
                                 key="actionListLabel"
                                 type="textTemplate"
                                 dataSource="actionListDatasource"
-                                required="true"
+                                required="false"
                             >
                                 <caption>Caption</caption>
                                 <description />
