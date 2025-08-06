@@ -29,6 +29,7 @@ import { setupActionCallback } from "../util";
  * @param {String}  options.onClick               Menu onClick action.
  * @param {String}  options.actionButtonStyle     Menu action button style attribute.
  * @param {Boolean} options.actionButtonBorder    Whether the action button has a border.
+ * @param {Boolean} options.actionButtonVisible   Whether the action button is visible.
  * @param {String}  options.hideDropdownWhenEmpty Enumeration of how to hide the dropdown when the menu is empty.
  * @param {Number}  options.tabIndex              Element tabindex.
  */
@@ -48,6 +49,7 @@ export function DropdownMenu({
     onClick,
     actionButtonStyle,
     actionButtonBorder,
+    actionButtonVisible,
     hideDropdownWhenEmpty,
     tabIndex
 }) {
@@ -197,6 +199,7 @@ export function DropdownMenu({
             onClick={setupActionCallback(onClick)}
             actionButtonStyle={actionButtonStyle}
             actionButtonBorder={actionButtonBorder}
+            actionButtonVisible={actionButtonVisible}
             hideDropdownWhenEmpty={hideDropdownWhenEmpty}
             tabIndex={tabIndex}
         >

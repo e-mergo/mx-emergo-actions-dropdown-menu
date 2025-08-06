@@ -65,9 +65,9 @@ const keysToHideByMenuItemType = {
  * @return {Properties} Widget properties
  */
 export function getProperties(values, defaultProperties, target) {
-    // Conditional event property
+    // Conditional event properties
     if (!values.onClick) {
-        hidePropertiesIn(defaultProperties, values, ["actionButtonStyle", "actionButtonBorder"]);
+        hidePropertiesIn(defaultProperties, values, ["actionButtonStyle", "actionButtonBorder", "actionButtonVisible"]);
     }
 
     // Links cannot do actions AND menus
@@ -76,7 +76,8 @@ export function getProperties(values, defaultProperties, target) {
             "buttonStyle",
             "border",
             "actionButtonStyle",
-            "actionButtonBorder"
+            "actionButtonBorder",
+            "actionButtonVisible"
         ]);
 
         if ("click" === values.openOn) {

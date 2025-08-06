@@ -53,6 +53,7 @@ import { MenuContext } from "./MenuContext";
  * @param {String}  options.onClick               Menu onClick action.
  * @param {String}  options.actionButtonStyle     Menu action button style attribute.
  * @param {Boolean} options.actionButtonBorder    Whether the action button has a border.
+ * @param {Boolean} options.actionButtonVisible   Whether the action button is visible.
  * @param {String}  options.hideDropdownWhenEmpty Enumeration of how to hide the dropdown when the menu is empty.
  * @param {Number}  options.tabIndex              Element tabindex.
  */
@@ -73,6 +74,7 @@ export const MenuComponent = forwardRef(
             alignment,
             actionButtonStyle,
             actionButtonBorder,
+            actionButtonVisible,
             hideDropdownWhenEmpty,
             tabIndex,
             ...props
@@ -115,14 +117,17 @@ export const MenuComponent = forwardRef(
         // Check whether to render the element as a link
         const isLink = !isNested && "link" === renderMode;
 
-        // Check whether the root button also triggers actions. Not for links.
-        const isActionTrigger = !isNested && !!props.onClick && !isLink;
-
-        // Check whether to show the root menu button
+        // Check whether to show the dropdown
         const showDropdown = !isNested && "yes" === hideDropdownWhenEmpty ? !!children.length : true;
 
         // Check whether to show the root menu button
         const showDropdownIcon = !isNested && "icon" === hideDropdownWhenEmpty ? !!children.length : true;
+
+        // Check whether the root button also triggers actions. Not for links.
+        const isActionButton = !isNested && !!props.onClick && !isLink;
+
+        // Check whether to show the root action button
+        const showActionButton = showDropdown && isActionButton && !!actionButtonVisible?.value;
 
         // Check whether the UI is in RTL
         const isRtl = "rtl" === window.mx.session.sessionData.uiconfig.direction; // Mx global
@@ -251,7 +256,7 @@ export const MenuComponent = forwardRef(
         return (
             <FloatingNode id={nodeId}>
                 <ButtonGroup className={className}>
-                    {isActionTrigger && showDropdown && (
+                    {showActionButton && (
                         <button
                             type="button"
                             className={classNames(
@@ -273,11 +278,11 @@ export const MenuComponent = forwardRef(
                     <MenuButton
                         ref={useMergeRefs([refs.setReference, ref, forwardedRef])}
                         className={classNames({
-                            [className || ""]: !isActionTrigger,
+                            [className || ""]: !isActionButton,
                             "btn-bordered": border,
                             [`btn-${buttonStyle}`]: !isLink
                         })}
-                        hideButton={!showDropdown || (isActionTrigger && !showDropdownIcon)}
+                        hideButton={!showDropdown || (isActionButton && !showDropdownIcon)}
                         isLink={isLink}
                         isNested={isNested}
                         isOpen={isOpen}
@@ -285,9 +290,9 @@ export const MenuComponent = forwardRef(
                         tabIndex={!isNested ? tabIndex : parent.activeIndex === index ? 0 : -1}
                         {...getReferenceProps({
                             ...parent.getItemProps({
-                                ...(!isActionTrigger && props),
+                                ...(!isActionButton && props),
                                 onFocus(event) {
-                                    if (!isActionTrigger) props.onFocus?.(event);
+                                    if (!isActionButton) props.onFocus?.(event);
                                     setHasFocusInside(false);
                                     parent.setHasFocusInside(true);
                                 }
@@ -309,7 +314,7 @@ export const MenuComponent = forwardRef(
                             }
                         })}
                     >
-                        {!isActionTrigger && (icon || label || props.subtitle) && (
+                        {!isActionButton && (icon || label || props.subtitle) && (
                             <div className={classNames(isNested ? "submenu-label" : "root-label")}>
                                 <Icon className="menu-item-icon" icon={icon} />
                                 <Caption label={label} subtitle={props.subtitle} />

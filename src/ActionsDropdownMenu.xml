@@ -99,6 +99,11 @@
                     <caption>Border</caption>
                     <description />
                 </property>
+                <property key="actionButtonVisible" type="expression" defaultValue="true" required="false">
+                    <caption>Button visible</caption>
+                    <description>When evaluated to false, the action button will not be visible.</description>
+                    <returnType type="Boolean" />
+                </property>
             </propertyGroup>
             <propertyGroup caption="Common">
                 <systemProperty key="Name" />
