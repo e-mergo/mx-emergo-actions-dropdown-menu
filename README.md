@@ -60,7 +60,7 @@ Set the visibility of the dropdown menu like any other widget.
 
 ### Events: On click
 
-Optionally set the menu button click action. When set, the menu button is split into a button group combining an action button and a dropdown button. Additionally set a separate button style and border decoration for the action button.
+Optionally set the menu button click action. When set, the menu button is split into a button group combining an action button and a dropdown button. Additionally set a separate button style, border decoration and the visibility for the action button.
 
 ### Menu dropdown icon
 
@@ -134,6 +134,10 @@ E-mergo provides paid support through standard support contracts. For other scen
 Requests for additional features can be posted in the widget's GitHub repository. Depending on your own code samples and the availability of E-mergo developers your request may be considered and included.
 
 ## Changelog
+
+#### 1.9.0 - 20250806
+
+-   Added the _Button visible_ attribute for setting the visibility of the actionable root button.
 
 #### 1.8.0 - 20250724
 
