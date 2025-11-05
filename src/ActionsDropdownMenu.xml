@@ -12,6 +12,7 @@
     <name>Actions Dropdown Menu</name>
     <description>Mendix custom widget for listing a set of action buttons in a dropdown menu.</description>
     <studioProCategory>Menus &amp; navigation</studioProCategory>
+    <helpUrl>https://github.com/e-mergo/mx-emergo-actions-dropdown-menu/blob/main/README.md</helpUrl>
     <icon />
     <properties>
         <propertyGroup caption="General">
