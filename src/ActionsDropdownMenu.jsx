@@ -25,6 +25,7 @@ import "./ui/ActionsDropdownMenu.scss";
  * @param {Boolean} options.actionButtonVisible   Whether the action button is visible.
  * @param {String}  options.hideDropdownWhenEmpty Enumeration of how to hide the dropdown when the menu is empty.
  * @param {Number}  options.tabIndex              Mendix widget element tabindex.
+ * @param {Object}  options.style                 Mendix widget element styles.
  */
 export function ActionsDropdownMenu({
     class: className,
@@ -44,7 +45,8 @@ export function ActionsDropdownMenu({
     actionButtonBorder,
     actionButtonVisible,
     hideDropdownWhenEmpty,
-    tabIndex
+    tabIndex,
+    style
 }) {
     return (
         <DropdownMenu
@@ -66,6 +68,7 @@ export function ActionsDropdownMenu({
             actionButtonVisible={actionButtonVisible}
             hideDropdownWhenEmpty={hideDropdownWhenEmpty}
             tabIndex={tabIndex}
+            style={style}
         />
     );
 }

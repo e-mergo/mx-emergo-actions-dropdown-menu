@@ -31,7 +31,8 @@ import { setupActionCallback } from "../util";
  * @param {Boolean} options.actionButtonBorder    Whether the action button has a border.
  * @param {Boolean} options.actionButtonVisible   Whether the action button is visible.
  * @param {String}  options.hideDropdownWhenEmpty Enumeration of how to hide the dropdown when the menu is empty.
- * @param {Number}  options.tabIndex              Element tabindex.
+ * @param {Number}  options.tabIndex              Mendix widget element tabindex.
+ * @param {Object}  options.style                 Mendix widget element styles.
  */
 export function DropdownMenu({
     className,
@@ -51,7 +52,8 @@ export function DropdownMenu({
     actionButtonBorder,
     actionButtonVisible,
     hideDropdownWhenEmpty,
-    tabIndex
+    tabIndex,
+    style
 }) {
     // Holds the menu levels
     const levels = [0];
@@ -202,6 +204,7 @@ export function DropdownMenu({
             actionButtonVisible={actionButtonVisible}
             hideDropdownWhenEmpty={hideDropdownWhenEmpty}
             tabIndex={tabIndex}
+            style={style}
         >
             {createMenuItems(createHierarchyFromFlatList(items))}
         </Menu>

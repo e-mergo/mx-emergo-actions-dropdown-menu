@@ -55,7 +55,8 @@ import { MenuContext } from "./MenuContext";
  * @param {Boolean} options.actionButtonBorder    Whether the action button has a border.
  * @param {Boolean} options.actionButtonVisible   Whether the action button is visible.
  * @param {String}  options.hideDropdownWhenEmpty Enumeration of how to hide the dropdown when the menu is empty.
- * @param {Number}  options.tabIndex              Element tabindex.
+ * @param {Number}  options.tabIndex              Mendix widget element tabindex.
+ * @param {Object}  options.style                 Mendix widget element styles.
  */
 export const MenuComponent = forwardRef(
     (
@@ -77,6 +78,7 @@ export const MenuComponent = forwardRef(
             actionButtonVisible,
             hideDropdownWhenEmpty,
             tabIndex,
+            style,
             ...props
         },
         forwardedRef
@@ -255,7 +257,7 @@ export const MenuComponent = forwardRef(
 
         return (
             <FloatingNode id={nodeId}>
-                <ButtonGroup className={className}>
+                <ButtonGroup className={className} style={style}>
                     {showActionButton && (
                         <button
                             type="button"
@@ -289,6 +291,7 @@ export const MenuComponent = forwardRef(
                         hasFocusInside={hasFocusInside}
                         tabIndex={!isNested ? tabIndex : parent.activeIndex === index ? 0 : -1}
                         {...getReferenceProps({
+                            ...(!isActionButton && { style }),
                             ...parent.getItemProps({
                                 ...(!isActionButton && props),
                                 onFocus(event) {
