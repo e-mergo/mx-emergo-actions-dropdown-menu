@@ -181,7 +181,9 @@ export function DropdownMenu({
 
                     // Add menu items from enumeration
                     case "enumeration":
-                        return <MenuItemEnum {...props} />;
+
+                        // Perhaps do not render component
+                        return props.enumerationAttribute.readOnly ? null : <MenuItemEnum {...props} />;
 
                     // Add submenu, require visible items
                     case "submenu": {

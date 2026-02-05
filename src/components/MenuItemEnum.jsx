@@ -68,10 +68,5 @@ export function MenuItemEnum({
             // Explicit key attribution to satisfy linter react/jsx-key
             .map(props => <MenuItem key={props.key} {...props} />);
 
-    // Perhaps do not render component
-    if (attr.readOnly) {
-        return null;
-    }
-
     return <Fragment>{createMenuItems(attr.universe)}</Fragment>;
 }
