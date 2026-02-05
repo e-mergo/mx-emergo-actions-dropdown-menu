@@ -1,11 +1,9 @@
-import { createElement, Fragment } from "react";
-import { MenuItem } from "./MenuItem";
 import { setupActionCallback } from "../util";
 
 /**
- * MenuItemList element
+ * Return the MenuItemList items
  *
- * @since 1.3.0
+ * @since 1.10.0
  *
  * @param {String}  options.actionListClassName  Menu item class name.
  * @param {Object}  options.actionListDatasource Datasource for menu items.
@@ -18,9 +16,9 @@ import { setupActionCallback } from "../util";
  * @param {Boolean} options.disabled             Whether the menu item is disabled.
  * @param {Object}  options.actionListVisible    Menu item visibility handler.
  */
-export function MenuItemList({
+export function getMenuItemList({
     actionListClassName: className,
-    actionListDatasource: { items },
+    actionListDatasource: { items = [] },
     actionListLabel: label,
     actionListSubtitle: subtitle,
     actionListOnClick: onClick,
@@ -79,11 +77,7 @@ export function MenuItemList({
                 subtitle: item.subtitle ? item.subtitle.value : undefined,
                 onClick: setupActionCallback(item.onClick),
                 visible: item.visible ? item.visible.value : undefined
-            }))
+            }));
 
-            // Setup elements
-            // Explicit key attribution to satisfy linter react/jsx-key
-            .map(props => <MenuItem key={props.key} {...props} />);
-
-    return <Fragment>{createMenuItems(items)}</Fragment>;
+    return createMenuItems(items);
 }

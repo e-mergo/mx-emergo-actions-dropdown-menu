@@ -1,4 +1,4 @@
-import { createElement } from "react";
+import { createElement, Fragment } from "react";
 import { v4 as uuid } from "uuid";
 import classNames from "classnames";
 import { Menu } from "./Menu";
@@ -6,7 +6,7 @@ import { MenuDivider } from "./MenuDivider";
 import { MenuItem } from "./MenuItem";
 import { MenuItemBoolean } from "./MenuItemBoolean";
 import { MenuItemEnum } from "./MenuItemEnum";
-import { MenuItemList } from "./MenuItemList";
+import { getMenuItemList } from "./getMenuItemList";
 import { setupActionCallback } from "../util";
 
 /**
@@ -155,8 +155,19 @@ export function DropdownMenu({
 
                 switch (item.itemType) {
                     // Add list of menu items
-                    case "actionList":
-                        return <MenuItemList {...props} />;
+                    case "actionList": {
+                        // Prepare menu items from list
+                        const listItems = getMenuItemList(props);
+
+                        // Explicit key attribution to satisfy linter react/jsx-key
+                        return listItems.length ? (
+                            <Fragment>
+                                {listItems.map(_props => (
+                                    <MenuItem key={_props.key} {..._props} />
+                                ))}
+                            </Fragment>
+                        ) : null;
+                    }
 
                     // Add boolean menu item
                     case "boolean":
