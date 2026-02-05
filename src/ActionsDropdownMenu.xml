@@ -258,6 +258,21 @@ Start a submenu of actions with a menu item of type 'Submenu' and end a submenu 
                                 <description />
                                 <returnType type="String" />
                             </property>
+                            <property key="submenuClassName" type="expression" required="false">
+                                <caption>Menu class</caption>
+                                <description />
+                                <returnType type="String" />
+                            </property>
+                            <property
+                                key="inheritMenuClassName"
+                                type="expression"
+                                defaultValue="false"
+                                required="false"
+                            >
+                                <caption>Inherit menu class</caption>
+                                <description>Indicate whether to inherit the parent's menu class name.</description>
+                                <returnType type="Boolean" />
+                            </property>
                         </propertyGroup>
                     </propertyGroup>
                 </properties>

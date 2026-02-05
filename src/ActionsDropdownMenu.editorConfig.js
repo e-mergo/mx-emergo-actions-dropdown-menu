@@ -16,24 +16,29 @@ const actionListMenuItemKeys = [
 // Define enumeration specific properties for menu items
 const enumerationMenuItemKeys = ["enumerationAttribute", "enumerationAttributeHideSelected"];
 
+// Define submenu specific properties for menu items
+const submenuItemKeys = ["submenuClassName", "inheritMenuClassName"];
+
 // Define conditional properties for menu items
 const keysToHideByMenuItemType = {
-    action: [...booleanMenuItemKeys, ...actionListMenuItemKeys, ...enumerationMenuItemKeys],
+    action: [...booleanMenuItemKeys, ...actionListMenuItemKeys, ...enumerationMenuItemKeys, ...submenuItemKeys],
     actionList: [
         ...booleanMenuItemKeys,
         ...enumerationMenuItemKeys,
+        ...submenuItemKeys,
         "label",
         "subtitle",
         "onClick",
         "visible",
         "className"
     ],
-    enumeration: [...booleanMenuItemKeys, ...actionListMenuItemKeys, "label", "subtitle"],
-    boolean: [...actionListMenuItemKeys, ...enumerationMenuItemKeys],
+    enumeration: [...booleanMenuItemKeys, ...actionListMenuItemKeys, ...submenuItemKeys, "label", "subtitle"],
+    boolean: [...actionListMenuItemKeys, ...enumerationMenuItemKeys, ...submenuItemKeys],
     divider: [
         ...booleanMenuItemKeys,
         ...actionListMenuItemKeys,
         ...enumerationMenuItemKeys,
+        ...submenuItemKeys,
         "subtitle",
         "onClick",
         "icon",
@@ -45,6 +50,7 @@ const keysToHideByMenuItemType = {
         ...booleanMenuItemKeys,
         ...actionListMenuItemKeys,
         ...enumerationMenuItemKeys,
+        ...submenuItemKeys,
         "label",
         "subtitle",
         "onClick",

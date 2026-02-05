@@ -123,7 +123,7 @@ export function DropdownMenu({
      * @param  {Array} list List of items in hierarchy to parse
      * @return {Array}      Menu item elements
      */
-    const createMenuItems = list =>
+    const createMenuItems = (list, parent = {}) =>
         list
             // Remove invisible items
             .filter(item => item.visible?.value)
@@ -141,7 +141,6 @@ export function DropdownMenu({
                 // Prepare props
                 const props = {
                     ...item,
-                    list: undefined, // Remove list for component render
                     key: uuid(),
                     className: item.className?.value || undefined,
                     label: item.label?.value || undefined,
@@ -152,6 +151,11 @@ export function DropdownMenu({
                     onClick: setupActionCallback(item.onClick),
                     visible: item.visible?.value
                 };
+
+                // Remove for component render
+                delete props.itemType;
+                delete props.list;
+                delete props.inheritMenuClassName;
 
                 switch (item.itemType) {
                     // Add list of menu items
@@ -185,7 +189,13 @@ export function DropdownMenu({
 
                     // Add submenu, require visible items
                     case "submenu": {
-                        const children = createMenuItems(item.list);
+                        // Extend item properties
+                        props.submenuClassName = item.submenuClassName?.value || undefined;
+                        if (item.inheritMenuClassName?.value) {
+                            props.menuClassName = parent.menuClassName;
+                        }
+
+                        const children = createMenuItems(item.list, props);
                         return children.length ? <Menu {...props}>{children}</Menu> : null;
                     }
 
@@ -219,7 +229,9 @@ export function DropdownMenu({
             tabIndex={tabIndex}
             style={style}
         >
-            {createMenuItems(createHierarchyFromFlatList(items))}
+            {createMenuItems(createHierarchyFromFlatList(items), {
+                menuClassName: menuClassName
+            })}
         </Menu>
     );
 }

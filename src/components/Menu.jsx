@@ -44,7 +44,8 @@ import { MenuContext } from "./MenuContext";
  * @param {Object}  options.icon                  Menu action icon attribute. See {@link https://docs.mendix.com/apidocs-mxsdk/apidocs/pluggable-widgets-client-apis/#icon-value}.
  * @param {Object}  options.renderMode            Menu render mode attribute.
  * @param {Object}  options.dropdownIcon          Menu dropdown icon attribute. See {@link https://docs.mendix.com/apidocs-mxsdk/apidocs/pluggable-widgets-client-apis/#icon-value}.
- * @param {Object}  options.menuClassName         Menu menu class name attribute.
+ * @param {String}  options.menuClassName         Menu class name attribute.
+ * @param {String}  options.submenuClassName      Submenu class name attribute.
  * @param {String}  options.buttonStyle           Menu button style attribute.
  * @param {Boolean} options.border                Whether the menu has a border.
  * @param {String}  options.interaction           Menu interaction attribute.
@@ -68,6 +69,7 @@ export const MenuComponent = forwardRef(
             renderMode,
             dropdownIcon,
             menuClassName,
+            submenuClassName,
             buttonStyle,
             border,
             interaction,
@@ -354,7 +356,8 @@ export const MenuComponent = forwardRef(
                                         className={classNames({
                                             "actions-dropdown-menu": !isNested,
                                             "actions-dropdown-submenu": isNested,
-                                            [menuClassName || ""]: !isNested
+                                            [menuClassName || ""]: true,
+                                            [submenuClassName || ""]: isNested
                                         })}
                                         style={floatingStyles}
                                         {...getFloatingProps()}
