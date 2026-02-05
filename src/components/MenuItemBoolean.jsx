@@ -27,11 +27,6 @@ export function MenuItemBoolean({ className, booleanAttribute: attr, onClick, ..
         }
     };
 
-    // Perhaps do not render component
-    if (attr.readOnly) {
-        return null;
-    }
-
     return (
         <MenuItem
             className={classNames(className, {

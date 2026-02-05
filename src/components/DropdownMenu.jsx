@@ -171,7 +171,9 @@ export function DropdownMenu({
 
                     // Add boolean menu item
                     case "boolean":
-                        return <MenuItemBoolean {...props} />;
+
+                        // Perhaps do not render component
+                        return props.booleanAttribute.readOnly ? null : <MenuItemBoolean {...props} />;
 
                     // Add divider item
                     case "divider":
