@@ -171,7 +171,6 @@ export function DropdownMenu({
 
                     // Add boolean menu item
                     case "boolean":
-
                         // Perhaps do not render component
                         return props.booleanAttribute.readOnly ? null : <MenuItemBoolean {...props} />;
 
@@ -181,7 +180,6 @@ export function DropdownMenu({
 
                     // Add menu items from enumeration
                     case "enumeration":
-
                         // Perhaps do not render component
                         return props.enumerationAttribute.readOnly ? null : <MenuItemEnum {...props} />;
 
