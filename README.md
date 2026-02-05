@@ -92,6 +92,8 @@ The following attributes may be set on a menu item:
 -   On click event
 -   Visible
 -   Class
+-   Menu class
+-   Inherit menu class
 
 Tip: clicking a _Boolean_ or _Enumeration_ menu item results in setting a new value in the related attribute, but the changes are not committed. To commit the changes in the attribute, use the onClick action to trigger a microflow in which the change is handled and committed. If the change is not committed, any triggered rollback (Cancel changes) will result in losing the change.
 
@@ -134,6 +136,14 @@ E-mergo provides paid support through standard support contracts. For other scen
 Requests for additional features can be posted in the widget's GitHub repository. Depending on your own code samples and the availability of E-mergo developers your request may be considered and included.
 
 ## Changelog
+
+#### 1.10.0 - 20260205
+
+-   Added _Menu class_ attribute for submenu items, so submenus can have their own menu class.
+-   Added _Inherit menu class_ attribute for submenu items, so submenus can inherit their parent's menu class.
+-   Fixed vertical icon alignment.
+-   Fixed generating empty lists from data source items which would result in empty submenus.
+-   Support custom styles from the widget style attribute.
 
 #### 1.9.0 - 20250806
 
