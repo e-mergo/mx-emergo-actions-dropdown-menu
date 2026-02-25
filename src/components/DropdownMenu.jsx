@@ -150,6 +150,7 @@ export function DropdownMenu({
                     buttonStyle: "divider" !== item.itemType ? item.buttonStyle : false,
                     border: item.border,
                     onClick: setupActionCallback(item.onClick),
+                    closeOnClick: item.closeOnClick?.value,
                     visible: item.visible?.value
                 };
 

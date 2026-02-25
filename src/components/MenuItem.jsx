@@ -12,16 +12,17 @@ import { MenuContext } from "./MenuContext";
  *
  * @since 1.0.0
  *
- * @param {String}  options.className   Menu item class name.
- * @param {String}  options.label       Menu item label attribute.
- * @param {String}  options.subtitle    Menu item subtitle attribute.
- * @param {Object}  options.icon        Menu item icon attribute. See {@link https://docs.mendix.com/apidocs-mxsdk/apidocs/pluggable-widgets-client-apis/#icon-value}.
- * @param {String}  options.buttonStyle Menu item button style attribute.
- * @param {Boolean} options.border      Whether the menu item has a border.
- * @param {Boolean} options.disabled    Whether the menu item is disabled.
+ * @param {String}  options.className    Menu item class name.
+ * @param {String}  options.label        Menu item label attribute.
+ * @param {String}  options.subtitle     Menu item subtitle attribute.
+ * @param {Object}  options.icon         Menu item icon attribute. See {@link https://docs.mendix.com/apidocs-mxsdk/apidocs/pluggable-widgets-client-apis/#icon-value}.
+ * @param {String}  options.buttonStyle  Menu item button style attribute.
+ * @param {Boolean} options.border       Whether the menu item has a border.
+ * @param {Boolean} options.disabled     Whether the menu item is disabled.
+ * @param {Boolean} options.closeOnClick Whether the menu closes on clicking the menu item.
  */
 export const MenuItem = forwardRef(
-    ({ className, label, subtitle, icon, buttonStyle, border, disabled, ...props }, forwardedRef) => {
+    ({ className, label, subtitle, icon, buttonStyle, border, disabled, closeOnClick, ...props }, forwardedRef) => {
         // Using the menu context
         const { getItemProps, activeIndex, setHasFocusInside } = useContext(MenuContext);
 
@@ -50,7 +51,7 @@ export const MenuItem = forwardRef(
                     ...props,
                     onClick(event) {
                         props.onClick?.(event);
-                        tree?.events.emit("click");
+                        if (closeOnClick) tree?.events.emit("click");
                     },
                     onFocus(event) {
                         props.onFocus?.(event);

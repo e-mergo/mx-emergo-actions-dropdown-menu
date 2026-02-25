@@ -5,16 +5,17 @@ import { setupActionCallback } from "../util";
  *
  * @since 1.10.0
  *
- * @param {String}  options.actionListClassName  Menu item class name.
- * @param {Object}  options.actionListDatasource Datasource for menu items.
- * @param {Object}  options.actionListLabel      Menu item label handler.
- * @param {Object}  options.actionListSubtitle   Menu item subtitle handler.
- * @param {Object}  options.actionListOnClick    Menu item onClick handler.
- * @param {Object}  options.icon                 Menu item icon attribute. See {@link https://docs.mendix.com/apidocs-mxsdk/apidocs/pluggable-widgets-client-apis/#icon-value}.
- * @param {String}  options.buttonStyle          Menu item button style attribute.
- * @param {Boolean} options.border               Whether the menu item has a border.
- * @param {Boolean} options.disabled             Whether the menu item is disabled.
- * @param {Object}  options.actionListVisible    Menu item visibility handler.
+ * @param {String}  options.actionListClassName    Menu item class name.
+ * @param {Object}  options.actionListDatasource   Datasource for menu items.
+ * @param {Object}  options.actionListLabel        Menu item label handler.
+ * @param {Object}  options.actionListSubtitle     Menu item subtitle handler.
+ * @param {Object}  options.actionListOnClick      Menu item onClick handler.
+ * @param {Object}  options.actionListCloseOnClick Menu item closeOnClick handler.
+ * @param {Object}  options.icon                   Menu item icon attribute. See {@link https://docs.mendix.com/apidocs-mxsdk/apidocs/pluggable-widgets-client-apis/#icon-value}.
+ * @param {String}  options.buttonStyle            Menu item button style attribute.
+ * @param {Boolean} options.border                 Whether the menu item has a border.
+ * @param {Boolean} options.disabled               Whether the menu item is disabled.
+ * @param {Object}  options.actionListVisible      Menu item visibility handler.
  */
 export function getMenuItemList({
     actionListClassName: className,
@@ -22,6 +23,7 @@ export function getMenuItemList({
     actionListLabel: label,
     actionListSubtitle: subtitle,
     actionListOnClick: onClick,
+    actionListCloseOnClick: closeOnClick,
     icon,
     buttonStyle,
     border,
@@ -60,11 +62,12 @@ export function getMenuItemList({
                 buttonStyle,
                 border,
                 onClick: getDynamicDataItemValue(onClick, item),
+                closeOnClick: getDynamicDataItemValue(closeOnClick, item),
                 visible: getDynamicDataItemValue(visible, item)
             }))
 
             // Remove invisible items
-            .filter(item => item.visible.value)
+            .filter(item => item.visible && item.visible.value)
 
             // Remove unauthorized actions
             .filter(item => !item.onClick || item.onClick.isAuthorized)
@@ -76,7 +79,7 @@ export function getMenuItemList({
                 label: item.label ? item.label.value : undefined,
                 subtitle: item.subtitle ? item.subtitle.value : undefined,
                 onClick: setupActionCallback(item.onClick),
-                visible: item.visible ? item.visible.value : undefined
+                closeOnClick: item.closeOnClick ? item.closeOnClick.value : undefined
             }));
 
     return createMenuItems(items);

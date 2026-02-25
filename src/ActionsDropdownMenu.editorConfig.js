@@ -9,6 +9,7 @@ const actionListMenuItemKeys = [
     "actionListLabel",
     "actionListSubtitle",
     "actionListOnClick",
+    "actionListCloseOnClick",
     "actionListVisible",
     "actionListClassName"
 ];
@@ -39,6 +40,7 @@ const keysToHideByMenuItemType = {
         "label",
         "subtitle",
         "onClick",
+        "closeOnClick",
         "visible",
         "className"
     ],
@@ -59,6 +61,7 @@ const keysToHideByMenuItemType = {
         ...widgetsItemKeys,
         "subtitle",
         "onClick",
+        "closeOnClick",
         "icon",
         "buttonStyle",
         "border"
@@ -69,6 +72,7 @@ const keysToHideByMenuItemType = {
         ...enumerationMenuItemKeys,
         ...widgetsItemKeys,
         "onClick",
+        "closeOnClick",
         "border"
     ],
     submenuEnd: [
@@ -80,6 +84,7 @@ const keysToHideByMenuItemType = {
         "label",
         "subtitle",
         "onClick",
+        "closeOnClick",
         "icon",
         "buttonStyle",
         "border",

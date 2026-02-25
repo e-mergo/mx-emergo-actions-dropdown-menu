@@ -8,10 +8,12 @@ import { MenuContext } from "./MenuContext";
  *
  * @since 1.11.0
  *
- * @param {String}  options.className   Menu item class name.
- * @param {String}  options.label       Optional. Menu item label attribute.
+ * @param {String}  options.className    Menu item class name.
+ * @param {String}  options.label        Optional. Menu item label attribute.
+ * @param {String}  options.itemContent  Menu item widgets.
+ * @param {String}  options.closeOnClick Whether the menu closes on clicking the menu item.
  */
-export function MenuItemWidgets = ({ className, label, itemContent: children, closeOnClick, ...props }) {
+export function MenuItemWidgets({ className, label, itemContent: children, closeOnClick, ...props }) {
     // Using the menu context
     const { getItemProps, activeIndex, setHasFocusInside } = useContext(MenuContext);
 

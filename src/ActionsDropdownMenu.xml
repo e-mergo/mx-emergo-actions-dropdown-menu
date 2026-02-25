@@ -228,6 +228,21 @@ Start a submenu of actions with a menu item of type 'Submenu' and end a submenu 
                                 <caption>On click</caption>
                                 <description />
                             </property>
+                            <property key="closeOnClick" type="expression" defaultValue="true">
+                                <caption>Close on click</caption>
+                                <description>Close the menu when the item is clicked?</description>
+                                <returnType type="Boolean" />
+                            </property>
+                            <property
+                                key="actionListCloseOnClick"
+                                type="expression"
+                                defaultValue="true"
+                                dataSource="actionListDatasource"
+                            >
+                                <caption>Close on click</caption>
+                                <description>Close the menu when the item is clicked?</description>
+                                <returnType type="Boolean" />
+                            </property>
                         </propertyGroup>
                         <propertyGroup caption="Visibility">
                             <property key="visible" type="expression" defaultValue="true" required="false">
