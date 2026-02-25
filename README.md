@@ -77,6 +77,7 @@ Set the menu items of the dropdown menu. Choose from the following types of menu
 -   **Divider** This type defines a dividing line with an optional caption.
 -   **Submenu** This type indicates the start of a subset of menu items.
 -   **Submenu end** This type indicates the end of a submenu.
+-   **Widgets** This type defines a menu item that contains widget content.
 
 The list of menu items is a flat list, which means that submenus are not defined in a visual hierarchy. Submenus are defined as menu items just like actions. Start a submenu of actions with a menu item of type _Submenu_ and end a submenu with a menu item of type _Submenu end_. Submenus without a subsequent _Submenu end_ will contain all subsequent menu items. There is no limit to the amount of nested submenus.
 
@@ -90,6 +91,7 @@ The following attributes may be set on a menu item:
 -   Button style
 -   Border
 -   On click event
+-   Close on click
 -   Visible
 -   Class
 -   Menu class
@@ -124,6 +126,7 @@ The widget is styled to blend in with the default styling of other button widget
 -   'root-menu' is the class name of the root menu button.
 -   'menu-item' is the class name of each menu item.
 -   'menu-divider' is the class name of a menu divider.
+-   'widgets-item' is the class name of a widgets menu item.
 
 ## FAQ
 
@@ -137,10 +140,15 @@ Requests for additional features can be posted in the widget's GitHub repository
 
 ## Changelog
 
+#### 1.11.0 - 20260225
+
+-   Added the _Widgets_ menu item type. This type defines a menu item that contains widget content.
+-   Added the _Close on click_ attribute for menu items to set whether the menu should close when the menu item is clicked.
+
 #### 1.10.0 - 20260205
 
--   Added _Menu class_ attribute for submenu items, so submenus can have their own menu class.
--   Added _Inherit menu class_ attribute for submenu items, so submenus can inherit their parent's menu class.
+-   Added the _Menu class_ attribute for submenu items, so submenus can have their own menu class.
+-   Added the _Inherit menu class_ attribute for submenu items, so submenus can inherit their parent's menu class.
 -   Fixed vertical icon alignment.
 -   Fixed generating empty lists from data source items which would result in empty submenus.
 -   Support custom styles from the widget style attribute.
