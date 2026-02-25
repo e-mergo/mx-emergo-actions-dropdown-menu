@@ -137,6 +137,7 @@ Start a submenu of actions with a menu item of type 'Submenu' and end a submenu 
                                     <enumerationValue key="enumeration">Enumeration</enumerationValue>
                                     <enumerationValue key="submenu">Submenu</enumerationValue>
                                     <enumerationValue key="submenuEnd">Submenu end</enumerationValue>
+                                    <enumerationValue key="widgets">Widgets</enumerationValue>
                                 </enumerationValues>
                             </property>
                         </propertyGroup>
@@ -211,6 +212,10 @@ Start a submenu of actions with a menu item of type 'Submenu' and end a submenu 
                             </property>
                             <property key="border" type="boolean" defaultValue="false">
                                 <caption>Border</caption>
+                                <description />
+                            </property>
+                            <property key="itemContent" type="widgets">
+                                <caption>Widget Content</caption>
                                 <description />
                             </property>
                         </propertyGroup>

@@ -6,6 +6,7 @@ import { MenuDivider } from "./MenuDivider";
 import { MenuItem } from "./MenuItem";
 import { MenuItemBoolean } from "./MenuItemBoolean";
 import { MenuItemEnum } from "./MenuItemEnum";
+import { MenuItemWidgets } from "./MenuItemWidgets";
 import { getMenuItemList } from "./getMenuItemList";
 import { setupActionCallback } from "../util";
 
@@ -198,6 +199,10 @@ export function DropdownMenu({
                         const children = createMenuItems(item.list, props);
                         return children.length ? <Menu {...props}>{children}</Menu> : null;
                     }
+
+                    // Add widgets item
+                    case "widgets":
+                        return <MenuItemWidgets {...props} />;
 
                     // Add generic menu item
                     default:

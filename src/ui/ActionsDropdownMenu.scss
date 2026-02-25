@@ -162,4 +162,9 @@
             background-color: var(--btn-default-border-color, #e7e7e9);
         }
     }
+
+    .widgets-item {
+        border: var(--border-width-default, 1px) solid var(--btn-default-border-color, #e7e7e9);
+        border-radius: var(--btn-border-radius, 4px);
+    }
 }

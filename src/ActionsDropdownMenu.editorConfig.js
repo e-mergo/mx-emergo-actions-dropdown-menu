@@ -19,22 +19,74 @@ const enumerationMenuItemKeys = ["enumerationAttribute", "enumerationAttributeHi
 // Define submenu specific properties for menu items
 const submenuItemKeys = ["submenuClassName", "inheritMenuClassName"];
 
+// Define widgets specific properties for menu items
+const widgetsItemKeys = ["itemContent"];
+
 // Define conditional properties for menu items
 const keysToHideByMenuItemType = {
-    action: [...booleanMenuItemKeys, ...actionListMenuItemKeys, ...enumerationMenuItemKeys, ...submenuItemKeys],
+    action: [
+        ...booleanMenuItemKeys,
+        ...actionListMenuItemKeys,
+        ...enumerationMenuItemKeys,
+        ...submenuItemKeys,
+        ...widgetsItemKeys
+    ],
     actionList: [
         ...booleanMenuItemKeys,
         ...enumerationMenuItemKeys,
         ...submenuItemKeys,
+        ...widgetsItemKeys,
         "label",
         "subtitle",
         "onClick",
         "visible",
         "className"
     ],
-    enumeration: [...booleanMenuItemKeys, ...actionListMenuItemKeys, ...submenuItemKeys, "label", "subtitle"],
-    boolean: [...actionListMenuItemKeys, ...enumerationMenuItemKeys, ...submenuItemKeys],
+    enumeration: [
+        ...booleanMenuItemKeys,
+        ...actionListMenuItemKeys,
+        ...submenuItemKeys,
+        ...widgetsItemKeys,
+        "label",
+        "subtitle"
+    ],
+    boolean: [...actionListMenuItemKeys, ...enumerationMenuItemKeys, ...submenuItemKeys, ...widgetsItemKeys],
     divider: [
+        ...booleanMenuItemKeys,
+        ...actionListMenuItemKeys,
+        ...enumerationMenuItemKeys,
+        ...submenuItemKeys,
+        ...widgetsItemKeys,
+        "subtitle",
+        "onClick",
+        "icon",
+        "buttonStyle",
+        "border"
+    ],
+    submenu: [
+        ...booleanMenuItemKeys,
+        ...actionListMenuItemKeys,
+        ...enumerationMenuItemKeys,
+        ...widgetsItemKeys,
+        "onClick",
+        "border"
+    ],
+    submenuEnd: [
+        ...booleanMenuItemKeys,
+        ...actionListMenuItemKeys,
+        ...enumerationMenuItemKeys,
+        ...submenuItemKeys,
+        ...widgetsItemKeys,
+        "label",
+        "subtitle",
+        "onClick",
+        "icon",
+        "buttonStyle",
+        "border",
+        "visible",
+        "className"
+    ],
+    widgets: [
         ...booleanMenuItemKeys,
         ...actionListMenuItemKeys,
         ...enumerationMenuItemKeys,
@@ -44,21 +96,6 @@ const keysToHideByMenuItemType = {
         "icon",
         "buttonStyle",
         "border"
-    ],
-    submenu: [...booleanMenuItemKeys, ...actionListMenuItemKeys, ...enumerationMenuItemKeys, "onClick", "border"],
-    submenuEnd: [
-        ...booleanMenuItemKeys,
-        ...actionListMenuItemKeys,
-        ...enumerationMenuItemKeys,
-        ...submenuItemKeys,
-        "label",
-        "subtitle",
-        "onClick",
-        "icon",
-        "buttonStyle",
-        "border",
-        "visible",
-        "className"
     ]
 };
 
