@@ -28,6 +28,7 @@ import classNames from "classnames";
 import { ButtonGroup } from "./ButtonGroup";
 import { Caption } from "./Caption";
 import { Icon } from "./Icon";
+import { MenuCustomTrigger } from "./MenuCustomTrigger";
 import { MenuButton } from "./MenuButton";
 import { MenuContext } from "./MenuContext";
 
@@ -43,6 +44,7 @@ import { MenuContext } from "./MenuContext";
  * @param {String}  options.label                 Menu label attribute.
  * @param {Object}  options.icon                  Menu action icon attribute. See {@link https://docs.mendix.com/apidocs-mxsdk/apidocs/pluggable-widgets-client-apis/#icon-value}.
  * @param {Object}  options.renderMode            Menu render mode attribute.
+ * @param {Object}  options.customTrigger         Menu custom trigger content.
  * @param {Object}  options.dropdownIcon          Menu dropdown icon attribute. See {@link https://docs.mendix.com/apidocs-mxsdk/apidocs/pluggable-widgets-client-apis/#icon-value}.
  * @param {String}  options.menuClassName         Menu class name attribute.
  * @param {String}  options.submenuClassName      Submenu class name attribute.
@@ -67,6 +69,7 @@ export const MenuComponent = forwardRef(
             label,
             icon,
             renderMode,
+            customTrigger,
             dropdownIcon,
             menuClassName,
             submenuClassName,
@@ -121,17 +124,23 @@ export const MenuComponent = forwardRef(
         // Check whether to render the element as a link
         const isLink = !isNested && "link" === renderMode;
 
-        // Check whether to show the dropdown
-        const showDropdown = !isNested && "yes" === hideDropdownWhenEmpty ? !!children.length : true;
+        // Check whether the root button also triggers actions. Not for links.
+        const isActionButton = !isNested && !!props.onClick && !isLink;
+
+        // Check whether to render the dropdown widget
+        const renderWidget = !isNested && "yes" === hideDropdownWhenEmpty ? !!children.length : true;
+
+        // Check whether to render the custom trigger
+        const showCustomTrigger = renderWidget && !isNested && "custom" === renderMode;
 
         // Check whether to show the root menu button
         const showDropdownIcon = !isNested && "icon" === hideDropdownWhenEmpty ? !!children.length : true;
 
-        // Check whether the root button also triggers actions. Not for links.
-        const isActionButton = !isNested && !!props.onClick && !isLink;
+        // Check whether to show the root menu button
+        const showDropdownButton = renderWidget && !showCustomTrigger && (!isActionButton || showDropdownIcon);
 
         // Check whether to show the root action button
-        const showActionButton = showDropdown && isActionButton && !!actionButtonVisible?.value;
+        const showActionButton = renderWidget && isActionButton && !!actionButtonVisible?.value;
 
         // Check whether the UI is in RTL
         const isRtl = "rtl" === window.mx.session.sessionData.uiconfig.direction; // Mx global
@@ -259,6 +268,20 @@ export const MenuComponent = forwardRef(
 
         return (
             <FloatingNode id={nodeId}>
+                <MenuCustomTrigger
+                    ref={useMergeRefs([refs.setReference, ref, forwardedRef])}
+                    className={className}
+                    hideElement={!showCustomTrigger}
+                    isOpen={isOpen}
+                    hasFocusInside={hasFocusInside}
+                    tabIndex={tabIndex}
+                    {...getReferenceProps({
+                        style,
+                        ...props
+                    })}
+                >
+                    {customTrigger}
+                </MenuCustomTrigger>
                 <ButtonGroup className={className} style={style}>
                     {showActionButton && (
                         <button
@@ -286,7 +309,7 @@ export const MenuComponent = forwardRef(
                             "btn-bordered": border,
                             [`btn-${buttonStyle}`]: !isLink
                         })}
-                        hideButton={!showDropdown || (isActionButton && !showDropdownIcon)}
+                        hideElement={!showDropdownButton}
                         isLink={isLink}
                         isNested={isNested}
                         isOpen={isOpen}

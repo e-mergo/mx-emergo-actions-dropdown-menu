@@ -20,6 +20,7 @@ import { setupActionCallback } from "../util";
  * @param {String}  options.label                 Menu caption attribute.
  * @param {String}  options.icon                  Menu action icon attribute. See {@link https://docs.mendix.com/apidocs-mxsdk/apidocs/pluggable-widgets-client-apis/#icon-value}.
  * @param {String}  options.renderMode            Menu render mode attribute.
+ * @param {String}  options.customTrigger         Menu custom trigger element(s).
  * @param {String}  options.dropdownIcon          Menu dropdown icon attribute. See {@link https://docs.mendix.com/apidocs-mxsdk/apidocs/pluggable-widgets-client-apis/#icon-value}.
  * @param {String}  options.menuClassName         Menu class name attribute.
  * @param {String}  options.buttonStyle           Menu button style attribute.
@@ -41,6 +42,7 @@ export function DropdownMenu({
     label,
     icon,
     renderMode,
+    customTrigger,
     dropdownIcon,
     menuClassName,
     buttonStyle,
@@ -220,6 +222,7 @@ export function DropdownMenu({
             label={label}
             icon={icon}
             renderMode={renderMode}
+            customTrigger={customTrigger}
             dropdownIcon={dropdownIcon}
             menuClassName={menuClassName}
             buttonStyle={buttonStyle}
@@ -232,7 +235,7 @@ export function DropdownMenu({
             actionButtonBorder={actionButtonBorder}
             actionButtonVisible={actionButtonVisible}
             hideDropdownWhenEmpty={hideDropdownWhenEmpty}
-            tabIndex={tabIndex}
+            tabIndex={tabIndex || 0}
             style={style}
         >
             {createMenuItems(createHierarchyFromFlatList(items), {

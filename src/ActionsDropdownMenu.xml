@@ -31,6 +31,7 @@
                     <enumerationValues>
                         <enumerationValue key="button">Button</enumerationValue>
                         <enumerationValue key="link">Link</enumerationValue>
+                        <enumerationValue key="custom">Custom</enumerationValue>
                     </enumerationValues>
                 </property>
                 <property key="buttonStyle" type="enumeration" defaultValue="default">
@@ -48,6 +49,10 @@
                 </property>
                 <property key="border" type="boolean" defaultValue="false">
                     <caption>Border</caption>
+                    <description />
+                </property>
+                <property key="customTrigger" type="widgets" required="true">
+                    <caption>Menu trigger</caption>
                     <description />
                 </property>
                 <property key="openOn" type="enumeration" defaultValue="hover">

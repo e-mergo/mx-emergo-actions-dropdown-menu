@@ -118,6 +118,11 @@ export function getProperties(values, defaultProperties, target) {
         hidePropertiesIn(defaultProperties, values, ["actionButtonStyle", "actionButtonBorder", "actionButtonVisible"]);
     }
 
+    // Buttons
+    if ("button" === values.renderMode) {
+        hidePropertiesIn(defaultProperties, values, ["customTrigger"]);
+    }
+
     // Links cannot do actions AND menus
     if ("link" === values.renderMode) {
         hidePropertiesIn(defaultProperties, values, [
@@ -125,12 +130,28 @@ export function getProperties(values, defaultProperties, target) {
             "border",
             "actionButtonStyle",
             "actionButtonBorder",
-            "actionButtonVisible"
+            "actionButtonVisible",
+            "customTrigger"
         ]);
 
         if ("click" === values.openOn) {
             hidePropertiesIn(defaultProperties, values, ["onClick"]);
         }
+    }
+
+    // Custom triggers cannot have captions or do actions
+    if ("custom" === values.renderMode) {
+        hidePropertiesIn(defaultProperties, values, [
+            "label",
+            "icon",
+            "buttonStyle",
+            "border",
+            "actionButtonStyle",
+            "actionButtonBorder",
+            "actionButtonVisible",
+            "onClick",
+            "dropdownIcon"
+        ]);
     }
 
     // Walk menu items
