@@ -5,7 +5,7 @@
     "description": "Mendix custom widget for listing a set of action buttons in a dropdown menu.",
     "author": "E-mergo, Laurens Offereins",
     "engines": {
-        "node": ">=16"
+        "node": ">=22"
     },
     "license": "MIT",
     "config": {
@@ -32,17 +32,17 @@
         "uuid": "^14.0.3"
     },
     "resolutions": {
-        "react": "18.2.0",
-        "react-native": "0.72.7",
-        "react-dom": "18.2.0",
-        "@types/react": "18.2.0",
-        "@types/react-dom": "18.2.0"
+        "react": "19.0.0",
+        "react-native": "0.78.2",
+        "react-dom": "19.0.0",
+        "@types/react": "19.0.0",
+        "@types/react-dom": "19.0.0"
     },
     "overrides": {
-        "react": "18.2.0",
-        "react-native": "0.72.7",
-        "react-dom": "18.2.0",
-        "@types/react": "18.2.0",
-        "@types/react-dom": "18.2.0"
+        "react": "19.0.0",
+        "react-native": "0.78.2",
+        "react-dom": "19.0.0",
+        "@types/react": "19.0.0",
+        "@types/react-dom": "19.0.0"
     }
 }
