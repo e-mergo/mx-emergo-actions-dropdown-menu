@@ -132,12 +132,7 @@ export function DropdownMenu({
             .filter(item => item.visible?.value)
 
             // Remove unauthorized actions
-            .filter(item => !item.onClick || item.onClick.isAuthorized)
-
-            // Remove leading dividers without label and trailing dividers
-            .filter((item, index, arr) =>
-                "divider" === item.itemType ? (0 !== index || item.label?.value) && index !== arr.length - 1 : true
-            )
+            .filter(item => !item.onClick || (item.onClick.isAuthorized && item.onClick.canExecute))
 
             // Setup elements
             .map(item => {
@@ -157,41 +152,40 @@ export function DropdownMenu({
                 };
 
                 // Remove for component render
-                delete props.itemType;
                 delete props.list;
                 delete props.inheritMenuClassName;
 
                 switch (item.itemType) {
-                    // Add list of menu items
+                    // List of menu items
                     case "actionList": {
                         // Prepare menu items from list
                         const listItems = getMenuItemList(props);
 
-                        // Explicit key attribution to satisfy linter react/jsx-key
-                        return listItems.length ? (
-                            <Fragment>
-                                {listItems.map(_props => (
-                                    <MenuItem key={_props.key} {..._props} />
-                                ))}
-                            </Fragment>
-                        ) : null;
+                        if (!listItems.length) {
+                            return null;
+                        }
+
+                        props.items = listItems;
+                        break;
                     }
 
-                    // Add boolean menu item
+                    // Boolean menu item
                     case "boolean":
                         // Perhaps do not render component
-                        return props.booleanAttribute.readOnly ? null : <MenuItemBoolean {...props} />;
+                        if (props.booleanAttribute.readOnly) return null;
+                        break;
 
-                    // Add divider item
+                    // Divider item
                     case "divider":
-                        return <MenuDivider {...props} />;
+                        break;
 
-                    // Add menu items from enumeration
+                    // Menu items from enumeration
                     case "enumeration":
                         // Perhaps do not render component
-                        return props.enumerationAttribute.readOnly ? null : <MenuItemEnum {...props} />;
+                        if (props.enumerationAttribute.readOnly) return null;
+                        break;
 
-                    // Add submenu, require visible items
+                    // Submenu, require visible items
                     case "submenu": {
                         // Extend item properties
                         props.submenuClassName = item.submenuClassName?.value || undefined;
@@ -200,7 +194,82 @@ export function DropdownMenu({
                         }
 
                         const children = createMenuItems(item.list, props);
-                        return children.length ? <Menu {...props}>{children}</Menu> : null;
+
+                        if (!children.length) return null;
+
+                        props.children = children;
+                        break;
+                    }
+
+                    // Widgets item
+                    case "widgets":
+                        break;
+
+                    // Generic menu item
+                    default:
+                        break;
+                }
+
+                return props;
+            })
+
+            // Remove nulls
+            .filter(Boolean)
+
+            // Remove certain dividers
+            .filter((item, index, arr) => {
+                if ("divider" === item.itemType) {
+                    // Leading divider without label
+                    if (0 === index && !item.label?.value) return false;
+                    // Trailing divider
+                    if (arr.length - 1 === index) return false;
+                    // Subsequent divider
+                    if (0 !== index && "divider" === arr[index - 1].itemType) return false;
+                }
+
+                return true;
+            })
+
+            // Setup elements
+            .map(props => {
+                const itemType = props.itemType;
+
+                // Remove for component render
+                delete props.itemType;
+
+                switch (itemType) {
+                    // List of menu items
+                    case "actionList": {
+                        // Explicit key attribution to satisfy linter react/jsx-key
+                        return (
+                            <Fragment>
+                                {props.items.map(itemProps => (
+                                    <MenuItem key={itemProps.key} {...itemProps} />
+                                ))}
+                            </Fragment>
+                        );
+                    }
+
+                    // Add boolean menu item
+                    case "boolean":
+                        return <MenuItemBoolean {...props} />;
+
+                    // Add divider item
+                    case "divider":
+                        return <MenuDivider {...props} />;
+
+                    // Add menu items from enumeration
+                    case "enumeration":
+                        return <MenuItemEnum {...props} />;
+
+                    // Add submenu
+                    case "submenu": {
+                        const children = props.children;
+
+                        // Remove for component render
+                        delete props.children;
+
+                        return <Menu {...props}>{children}</Menu>;
                     }
 
                     // Add widgets item
