@@ -92,6 +92,8 @@
         padding: var(--widget-actions-dropdown-menu-item-spacing-block)
             var(--widget-actions-dropdown-menu-item-spacing-inline);
         background-color: transparent;
+        border: var(--widget-actions-dropdown-menu-border-width) solid var(--widget-actions-dropdown-menu-border-color);
+        border-radius: var(--widget-actions-dropdown-menu-border-radius);
         // max-width: 260px; // Set in case of long label/subtitle
         user-select: none;
 
@@ -162,8 +164,6 @@
         padding: var(--widget-actions-dropdown-menu-divider-spacing-top)
             var(--widget-actions-dropdown-menu-item-spacing-inline)
             var(--widget-actions-dropdown-menu-divider-spacing-bottom);
-        border: var(--widget-actions-dropdown-menu-border-width) solid var(--widget-actions-dropdown-menu-border-color);
-        border-radius: var(--widget-actions-dropdown-menu-border-radius);
         text-align: left;
 
         &:empty,
@@ -176,23 +176,17 @@
         }
 
         &:after {
+            display: none;
             content: "";
             position: absolute;
-            left: 0px;
             top: var(--widget-actions-dropdown-menu-divider-spacing-bottom);
+            left: 0px;
             width: 100%;
-            height: var(--widget-actions-dropdown-menu-border-width);
-            display: none;
-            background-color: var(--widget-actions-dropdown-menu-border-color);
+            border-top: var(--widget-actions-dropdown-menu-border-width) solid var(--widget-actions-dropdown-menu-border-color);
         }
 
         &:not(:first-child):after {
             display: block;
         }
-    }
-
-    .widgets-item {
-        border: var(--widget-actions-dropdown-menu-border-width) solid var(--widget-actions-dropdown-menu-border-color);
-        border-radius: var(--widget-actions-dropdown-menu-border-radius);
     }
 }
