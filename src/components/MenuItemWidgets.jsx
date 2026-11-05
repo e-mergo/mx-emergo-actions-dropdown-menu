@@ -33,8 +33,10 @@ export function MenuItemWidgets({ className, label, itemContent: children, close
             className={classNames(className, "menu-item", "widgets-item")}
             {...getItemProps({
                 ...props,
-                onClick(event) {
-                    if (closeOnClick) tree?.events.emit("click");
+                // Use onClickCapture to always trigger regardless of unpropagated button events
+                onClickCapture(event) {
+                    // Add delay to ensure actual onClick is executed
+                    if (closeOnClick) setTimeout(() => tree?.events.emit("click"), 0);
                 },
                 onFocus(event) {
                     props.onFocus?.(event);
