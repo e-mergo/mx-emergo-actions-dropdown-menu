@@ -376,12 +376,15 @@ export const MenuComponent = forwardRef(
                                 >
                                     <div
                                         ref={refs.setFloating}
-                                        className={classNames({
-                                            "actions-dropdown-menu": !isNested,
-                                            "actions-dropdown-submenu": isNested,
-                                            [menuClassName || ""]: true,
-                                            [submenuClassName || ""]: isNested
-                                        })}
+                                        className={classNames(
+                                            "actions-dropdown-menu-popup",
+                                            {
+                                                "actions-dropdown-menu": !isNested,
+                                                "actions-dropdown-submenu": isNested
+                                            },
+                                            menuClassName,
+                                            isNested ? submenuClassName : ""
+                                        )}
                                         style={floatingStyles}
                                         {...getFloatingProps()}
                                     >
