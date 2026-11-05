@@ -25,7 +25,7 @@ export const MenuCustomTrigger = forwardRef(
             "div",
             {
                 ref: forwardedRef,
-                className: classNames(className, { active: isOpen }, "custom-root-menu"),
+                className: classNames(className, { active: isOpen }, "custom-root-menu-trigger"),
                 role: "button",
                 "data-open": isOpen ? "" : undefined,
                 "data-focus-inside": hasFocusInside ? "" : undefined,

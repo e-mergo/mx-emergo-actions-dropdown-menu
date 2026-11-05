@@ -36,7 +36,7 @@ export const MenuButton = forwardRef(
                     },
                     className,
                     { active: isNested ? isOpen && hasFocusInside : isOpen },
-                    isNested ? "menu-item" : "root-menu"
+                    isNested ? "menu-item" : "root-menu root-menu-trigger" /* Keep .root-menu for back-compat */
                 ),
                 role: isNested ? "menuitem" : isLink ? "button" : undefined,
                 "data-open": isOpen ? "" : undefined,

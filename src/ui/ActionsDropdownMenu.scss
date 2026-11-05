@@ -29,13 +29,13 @@
             border-bottom-right-radius: 0px;
         }
 
-        .root-menu {
+        .root-menu-trigger {
             border-top-left-radius: 0px;
             border-bottom-left-radius: 0px;
             border-left: none;
         }
 
-        &.root-menu .root-label + .menu-item-open {
+        &.root-menu-trigger .root-label + .menu-item-open {
             margin-left: 8px;
         }
 
@@ -50,13 +50,13 @@
             border-bottom-left-radius: 0px;
         }
 
-        .root-menu {
+        .root-menu-trigger {
             border-top-right-radius: 0px;
             border-bottom-right-radius: 0px;
             border-right: none;
         }
 
-        &.root-menu .root-label + .menu-item-open {
+        &.root-menu-trigger .root-label + .menu-item-open {
             margin-right: 8px;
         }
 
