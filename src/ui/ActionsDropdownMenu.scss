@@ -1,3 +1,22 @@
+:root {
+    --widget-actionsdropdownmenu-min-width: 140px;
+    --widget-actionsdropdownmenu-bg: var(--btn-default-bg, #fff);
+    --widget-actionsdropdownmenu-border-width: var(--border-width-default, 1px);
+    --widget-actionsdropdownmenu-border-color: var(--btn-default-border-color, #e7e7e9);
+    --widget-actionsdropdownmenu-border-radius: var(--btn-border-radius, 4px);
+    --widget-actionsdropdownmenu-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.05);
+    --widget-actionsdropdownmenu-z-index: 2;
+
+    // Menu item
+    --widget-actionsdropdownmenu-item-spacing-block: 0.6em;
+    --widget-actionsdropdownmenu-item-spacing-inline: 1em;
+
+    // Menu divider
+    --widget-actionsdropdownmenu-divider-spacing-top: calc(var(--widget-actionsdropdownmenu-item-spacing-block) * 2);
+    --widget-actionsdropdownmenu-divider-spacing-bottom: var(--widget-actionsdropdownmenu-item-spacing-block);
+    --widget-actionsdropdownmenu-divider-height: 1px;
+}
+
 .actions-dropdown-menu-button {
     display: inline-block;
 
@@ -58,17 +77,19 @@
 .actions-dropdown-submenu {
     display: flex;
     flex-direction: column;
-    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.05);
-    background-color: var(--btn-default-bg, #fff);
-    border-radius: calc(var(--btn-border-radius, 4px) + 2px); // Disappear behind menu-items
-    z-index: 2; // Above data-grid headers
+    box-shadow: var(--widget-actionsdropdownmenu-box-shadow);
+    background-color: var(--widget-actionsdropdownmenu-bg);
+    border-radius: calc(var(--widget-actionsdropdownmenu-border-radius) + 2px); // Hide behind menu-items
+    z-index: var(--widget-actionsdropdownmenu-z-index); // Above data-grid headers
 
     .menu-item {
         display: flex;
         flex-direction: row;
         align-items: center;
         grid-gap: 8px;
-        min-width: 140px;
+        min-width: var(--widget-actionsdropdownmenu-min-width);
+        padding: var(--widget-actionsdropdownmenu-item-spacing-block)
+            var(--widget-actionsdropdownmenu-item-spacing-inline);
         background-color: transparent;
         // max-width: 260px; // Set in case of long label/subtitle
         user-select: none;
@@ -137,34 +158,40 @@
 
     .menu-divider {
         position: relative;
-        padding: 1.2em 1em 0.6em;
-        border: var(--border-width-default, 1px) solid var(--btn-default-border-color, #e7e7e9);
-        border-radius: var(--btn-border-radius, 4px);
+        padding: var(--widget-actionsdropdownmenu-divider-spacing-top)
+            var(--widget-actionsdropdownmenu-item-spacing-inline)
+            var(--widget-actionsdropdownmenu-divider-spacing-bottom);
+        border: var(--widget-actionsdropdownmenu-border-width) solid var(--widget-actionsdropdownmenu-border-color);
+        border-radius: var(--widget-actionsdropdownmenu-border-radius);
         text-align: left;
 
         &:empty,
         &:first-child:not(:empty) {
-            padding: 0.6em 1em;
+            --widget-actionsdropdownmenu-divider-spacing-top: var(--widget-actionsdropdownmenu-divider-spacing-bottom);
         }
 
         [dir="rtl"] & {
             text-align: right;
         }
 
-        &:not(:first-child):after {
+        &:after {
             content: "";
             position: absolute;
-            left: 0;
-            top: 0.6em;
+            left: 0px;
+            top: var(--widget-actionsdropdownmenu-divider-spacing-bottom);
             width: 100%;
-            height: var(--border-width-default, 1px);
+            height: var(--widget-actionsdropdownmenu-border-width);
+            display: none;
+            background-color: var(--widget-actionsdropdownmenu-border-color);
+        }
+
+        &:not(:first-child):after {
             display: block;
-            background-color: var(--btn-default-border-color, #e7e7e9);
         }
     }
 
     .widgets-item {
-        border: var(--border-width-default, 1px) solid var(--btn-default-border-color, #e7e7e9);
-        border-radius: var(--btn-border-radius, 4px);
+        border: var(--widget-actionsdropdownmenu-border-width) solid var(--widget-actionsdropdownmenu-border-color);
+        border-radius: var(--widget-actionsdropdownmenu-border-radius);
     }
 }
