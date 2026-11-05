@@ -287,7 +287,10 @@ export function DropdownMenu({
 
     return (
         <Menu
-            className={classNames(className, "actions-dropdown-menu-button")}
+            className={classNames(
+                className,
+                "widget-actions-dropdown-menu actions-dropdown-menu-button"
+            )} /* Keep .actions-dropdown-menu-button for back-compat */
             label={label}
             icon={icon}
             renderMode={renderMode}

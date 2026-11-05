@@ -13,12 +13,14 @@
     --widget-actions-dropdown-menu-item-spacing-inline: 1em;
 
     // Menu divider
-    --widget-actions-dropdown-menu-divider-spacing-top: calc(var(--widget-actions-dropdown-menu-item-spacing-block) * 2);
+    --widget-actions-dropdown-menu-divider-spacing-top: calc(
+        var(--widget-actions-dropdown-menu-item-spacing-block) * 2
+    );
     --widget-actions-dropdown-menu-divider-spacing-bottom: var(--widget-actions-dropdown-menu-item-spacing-block);
     --widget-actions-dropdown-menu-divider-height: 1px;
 }
 
-.actions-dropdown-menu-button {
+.widget-actions-dropdown-menu {
     display: inline-block;
 
     [dir="ltr"] & {
