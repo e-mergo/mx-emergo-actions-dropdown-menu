@@ -1,20 +1,21 @@
 :root {
-    --widget-actionsdropdownmenu-min-width: 140px;
-    --widget-actionsdropdownmenu-bg: var(--btn-default-bg, #fff);
-    --widget-actionsdropdownmenu-border-width: var(--border-width-default, 1px);
-    --widget-actionsdropdownmenu-border-color: var(--btn-default-border-color, #e7e7e9);
-    --widget-actionsdropdownmenu-border-radius: var(--btn-border-radius, 4px);
-    --widget-actionsdropdownmenu-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.05);
-    --widget-actionsdropdownmenu-z-index: 2;
+    // Menu container
+    --widget-actions-dropdown-menu-min-width: 140px;
+    --widget-actions-dropdown-menu-bg: var(--btn-default-bg, #fff);
+    --widget-actions-dropdown-menu-border-width: var(--border-width-default, 1px);
+    --widget-actions-dropdown-menu-border-color: var(--btn-default-border-color, #e7e7e9);
+    --widget-actions-dropdown-menu-border-radius: var(--btn-border-radius, 4px);
+    --widget-actions-dropdown-menu-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.05);
+    --widget-actions-dropdown-menu-z-index: 2;
 
     // Menu item
-    --widget-actionsdropdownmenu-item-spacing-block: 0.6em;
-    --widget-actionsdropdownmenu-item-spacing-inline: 1em;
+    --widget-actions-dropdown-menu-item-spacing-block: 0.6em;
+    --widget-actions-dropdown-menu-item-spacing-inline: 1em;
 
     // Menu divider
-    --widget-actionsdropdownmenu-divider-spacing-top: calc(var(--widget-actionsdropdownmenu-item-spacing-block) * 2);
-    --widget-actionsdropdownmenu-divider-spacing-bottom: var(--widget-actionsdropdownmenu-item-spacing-block);
-    --widget-actionsdropdownmenu-divider-height: 1px;
+    --widget-actions-dropdown-menu-divider-spacing-top: calc(var(--widget-actions-dropdown-menu-item-spacing-block) * 2);
+    --widget-actions-dropdown-menu-divider-spacing-bottom: var(--widget-actions-dropdown-menu-item-spacing-block);
+    --widget-actions-dropdown-menu-divider-height: 1px;
 }
 
 .actions-dropdown-menu-button {
@@ -77,19 +78,19 @@
 .actions-dropdown-submenu {
     display: flex;
     flex-direction: column;
-    box-shadow: var(--widget-actionsdropdownmenu-box-shadow);
-    background-color: var(--widget-actionsdropdownmenu-bg);
-    border-radius: calc(var(--widget-actionsdropdownmenu-border-radius) + 2px); // Hide behind menu-items
-    z-index: var(--widget-actionsdropdownmenu-z-index); // Above data-grid headers
+    box-shadow: var(--widget-actions-dropdown-menu-box-shadow);
+    background-color: var(--widget-actions-dropdown-menu-bg);
+    border-radius: calc(var(--widget-actions-dropdown-menu-border-radius) + 2px); // Hide behind menu-items
+    z-index: var(--widget-actions-dropdown-menu-z-index); // Above data-grid headers
 
     .menu-item {
         display: flex;
         flex-direction: row;
         align-items: center;
         grid-gap: 8px;
-        min-width: var(--widget-actionsdropdownmenu-min-width);
-        padding: var(--widget-actionsdropdownmenu-item-spacing-block)
-            var(--widget-actionsdropdownmenu-item-spacing-inline);
+        min-width: var(--widget-actions-dropdown-menu-min-width);
+        padding: var(--widget-actions-dropdown-menu-item-spacing-block)
+            var(--widget-actions-dropdown-menu-item-spacing-inline);
         background-color: transparent;
         // max-width: 260px; // Set in case of long label/subtitle
         user-select: none;
@@ -158,16 +159,16 @@
 
     .menu-divider {
         position: relative;
-        padding: var(--widget-actionsdropdownmenu-divider-spacing-top)
-            var(--widget-actionsdropdownmenu-item-spacing-inline)
-            var(--widget-actionsdropdownmenu-divider-spacing-bottom);
-        border: var(--widget-actionsdropdownmenu-border-width) solid var(--widget-actionsdropdownmenu-border-color);
-        border-radius: var(--widget-actionsdropdownmenu-border-radius);
+        padding: var(--widget-actions-dropdown-menu-divider-spacing-top)
+            var(--widget-actions-dropdown-menu-item-spacing-inline)
+            var(--widget-actions-dropdown-menu-divider-spacing-bottom);
+        border: var(--widget-actions-dropdown-menu-border-width) solid var(--widget-actions-dropdown-menu-border-color);
+        border-radius: var(--widget-actions-dropdown-menu-border-radius);
         text-align: left;
 
         &:empty,
         &:first-child:not(:empty) {
-            --widget-actionsdropdownmenu-divider-spacing-top: var(--widget-actionsdropdownmenu-divider-spacing-bottom);
+            --widget-actions-dropdown-menu-divider-spacing-top: var(--widget-actions-dropdown-menu-divider-spacing-bottom);
         }
 
         [dir="rtl"] & {
@@ -178,11 +179,11 @@
             content: "";
             position: absolute;
             left: 0px;
-            top: var(--widget-actionsdropdownmenu-divider-spacing-bottom);
+            top: var(--widget-actions-dropdown-menu-divider-spacing-bottom);
             width: 100%;
-            height: var(--widget-actionsdropdownmenu-border-width);
+            height: var(--widget-actions-dropdown-menu-border-width);
             display: none;
-            background-color: var(--widget-actionsdropdownmenu-border-color);
+            background-color: var(--widget-actions-dropdown-menu-border-color);
         }
 
         &:not(:first-child):after {
@@ -191,7 +192,7 @@
     }
 
     .widgets-item {
-        border: var(--widget-actionsdropdownmenu-border-width) solid var(--widget-actionsdropdownmenu-border-color);
-        border-radius: var(--widget-actionsdropdownmenu-border-radius);
+        border: var(--widget-actions-dropdown-menu-border-width) solid var(--widget-actions-dropdown-menu-border-color);
+        border-radius: var(--widget-actions-dropdown-menu-border-radius);
     }
 }
