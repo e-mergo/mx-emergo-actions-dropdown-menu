@@ -32,7 +32,11 @@ Set the menu button icon with a icon or image from the icon library.
 
 ### Render mode
 
-Set the render mode of the trigger element: button or link. The link render mode does not support click interaction combined with an on click event.
+Set the render mode of the trigger element: button, link or custom.
+
+-   **Button** This mode displays the menu trigger as a button.
+-   **Link** This mode displays the menu trigger as a link. This mode does not support click interaction combined with an on click event.
+-   **Custom** This mode enables any widget content to be used as the menu trigger.
 
 ### Button style
 
@@ -71,9 +75,9 @@ Set the menu dropdown icon with a icon or image from the icon library. By defaul
 Set the menu items of the dropdown menu. Choose from the following types of menu items:
 
 -   **Action** This type defines a single actionable menu item.
--   **Boolean** This type defines a single actionable menu item based on a boolean attribute. When clicking the menu item, the boolean attribute is changed to the inverted value and the configured onClick event is executed afterwards. When the attribute is True, the menu item gets the 'boolean-item-active' class. When False, the menu item gets the 'boolean-item-inactive' class.
+-   **Boolean** This type defines a single actionable menu item based on a boolean attribute. When clicking the menu item, the boolean attribute is changed (not committed) to the inverted value and the configured onClick event is executed afterwards. When the attribute is True, the menu item gets the `boolean-item-active` class. When False, the menu item gets the `boolean-item-inactive` class.
 -   **Data source** This type defines multiple actionable menu items based on objects from a data source.
--   **Enumeration** This type defines multiple actionable menu items based on values in an enumeration available for an enumeration attribute. When clicking a menu item, the enumeration attribute is changed to the selected value and the configured onClick event is executed afterwards. Enumeration values cannot be used in expressions for captions, subtitles, visibility or class names. All menu items get the 'enum-item__{Value}' class. The selected menu item gets the 'enum-item-selected' class. Use _Hide selected option_ to remove the selected menu item from the menu.
+-   **Enumeration** This type defines multiple actionable menu items based on values in an enumeration available for an enumeration attribute. When clicking a menu item, the enumeration attribute is changed (not committed) to the selected value and the configured onClick event is executed afterwards. Enumeration values cannot be used in expressions for captions, subtitles, visibility or class names. All menu items get the `enum-item__{Value}` class. The selected menu item gets the `enum-item-selected` class. Use _Hide selected option_ to remove the selected menu item from the menu.
 -   **Divider** This type defines a dividing line with an optional caption.
 -   **Submenu** This type indicates the start of a subset of menu items.
 -   **Submenu end** This type indicates the end of a submenu.
@@ -97,7 +101,7 @@ The following attributes may be set on a menu item:
 -   Menu class
 -   Inherit menu class
 
-Tip: clicking a _Boolean_ or _Enumeration_ menu item results in setting a new value in the related attribute, but the changes are not committed. To commit the changes in the attribute, use the onClick action to trigger a microflow in which the change is handled and committed. If the change is not committed, any triggered rollback (Cancel changes) will result in losing the change.
+Tip: clicking a _Boolean_ or _Enumeration_ menu item results in setting a new value in the related attribute, but the changes are **not** committed. To commit the changes in the attribute, use the onClick action to trigger a microflow in which the change is processed and committed. If the change is not committed, any triggered rollback (Cancel changes) will result in losing the change.
 
 ### Menu class
 
@@ -120,13 +124,37 @@ Follow these steps to add the widget to your Mendix project:
 
 The widget is styled to blend in with the default styling of other button widgets in Mendix' Atlas UI. Also the action and submenu menu items are button elements with the default 'btn' class, which makes them behave and look like other Mendix buttons. The widget can be styled through CSS in your project's theme styles.
 
--   'actions-dropdown-menu-button' is the class name of the menu button element.
--   'actions-dropdown-menu' is the class name of the popup root menu of actions.
--   'actions-dropdown-submenu' is the class name of each popup submenu of actions.
--   'root-menu' is the class name of the root menu button.
--   'menu-item' is the class name of each menu item.
--   'menu-divider' is the class name of a menu divider.
--   'widgets-item' is the class name of a widgets menu item.
+-   **widget-actions-dropdown-menu** defines the widget's wrapper element.
+-   **root-menu-trigger** defines the root trigger element in Button and Link render modes.
+-   **custom-root-menu-trigger** defines the trigger element in Custom render mode.
+-   **actions-dropdown-menu-popup** defines the popup menu elements.
+-   **actions-dropdown-menu** defines the popup root menu of actions.
+-   **actions-dropdown-submenu** defines any popup submenu of actions.
+-   **menu-item** defines each menu item.
+-   **menu-divider** defines a menu divider.
+-   **widgets-item** defines a widgets menu item.
+
+Some CSS custom properties are defined to allow for more detailed control over widget styling:
+
+```
+	// Menu container
+    --widget-actions-dropdown-menu-min-width
+    --widget-actions-dropdown-menu-bg
+    --widget-actions-dropdown-menu-border-width
+    --widget-actions-dropdown-menu-border-color
+    --widget-actions-dropdown-menu-border-radius
+    --widget-actions-dropdown-menu-box-shadow
+    --widget-actions-dropdown-menu-z-index
+
+    // Menu item
+    --widget-actions-dropdown-menu-item-spacing-block
+    --widget-actions-dropdown-menu-item-spacing-inline
+
+    // Menu divider
+    --widget-actions-dropdown-menu-divider-spacing-top
+    --widget-actions-dropdown-menu-divider-spacing-bottom
+    --widget-actions-dropdown-menu-divider-height
+```
 
 ## FAQ
 
@@ -139,6 +167,16 @@ E-mergo provides paid support through standard support contracts. For other scen
 Requests for additional features can be posted in the widget's GitHub repository. Depending on your own code samples and the availability of E-mergo developers your request may be considered and included.
 
 ## Changelog
+
+#### 1.12.0 - 20261106
+
+-   Added the _Custom_ render mode. This mode enables any widget content to be used as the menu trigger.
+-   Added CSS custom properties for widget styling.
+-   Added class name `widget-actions-dropdown-menu` for the widget's wrapper element.
+-   Added class name `root-menu-trigger` for the root trigger element in Button and Link render modes.
+-   Added class name `actions-dropdown-menu-popup` for the popup menu elements.
+-   Fixed processing of menu items which should remove loose dividers and unintended item attributes.
+-   Fixed closing the menu when clicking a button inside a widgets menu item.
 
 #### 1.11.0 - 20260225
 
@@ -160,8 +198,8 @@ Requests for additional features can be posted in the widget's GitHub repository
 #### 1.8.0 - 20250724
 
 -   Changed widget attribute setup to not require captions for the main button or for menu items.
--   Added classname 'menu-item-open' for menu expand icons.
--   Added classname 'menu-item-icon' for menu caption icons.
+-   Added class name `menu-item-open` for menu expand icons.
+-   Added class name `menu-item-icon` for menu caption icons.
 -   Added support for Atlas Core 4 css custom properties (variables).
 -   Fixed handling click events for the dropdown in both button and link render mode.
 
@@ -199,7 +237,7 @@ Requests for additional features can be posted in the widget's GitHub repository
 
 #### 1.2.1 - 20240226
 
--   Fixed missing classnames for the dropdown menu button element.
+-   Fixed missing class names for the dropdown menu button element.
 
 #### 1.2.0 - 20240225
 
