@@ -66,7 +66,14 @@ export function MenuItemEnum({
 
             // Setup elements
             // Explicit key attribution to satisfy linter react/jsx-key
-            .map(props => <MenuItem key={props.key} {...props} />);
+            .map(props => {
+                const key = props.key;
+
+                // Remove unintended attributes
+                delete props.key;
+
+                return <MenuItem key={key} {...props} />;
+            });
 
     return <Fragment>{createMenuItems(attr.universe)}</Fragment>;
 }

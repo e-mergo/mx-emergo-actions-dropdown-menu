@@ -1,3 +1,5 @@
+import * as _ from "lodash-es";
+import { keysToHideByMenuItemType } from "../mappings";
 import { setupActionCallback } from "../util";
 
 /**
@@ -79,8 +81,15 @@ export function getMenuItemList({
                 label: item.label ? item.label.value : undefined,
                 subtitle: item.subtitle ? item.subtitle.value : undefined,
                 onClick: setupActionCallback(item.onClick),
-                closeOnClick: item.closeOnClick ? item.closeOnClick.value : undefined
-            }));
+                closeOnClick: item.closeOnClick ? item.closeOnClick.value : undefined,
+                visible: undefined
+            }))
+
+            // Remove unintended attributes
+            .map(props => _.omitBy(props, _.isNil))
+
+            // Remove unintended attributes by itemType
+            .map(props => _.omit(props, keysToHideByMenuItemType.action));
 
     return createMenuItems(items);
 }
